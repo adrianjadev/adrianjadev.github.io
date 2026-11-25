@@ -1,0 +1,3304 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adrian Jade — Cloud Security Engineer</title>
+  <meta name="description" content="Cloud Security Engineer portfolio of Adrian Jade (@adrianjadev) — Google Cloud IAM, Zero-Trust networking, Terraform IaC, Kubernetes hardening, and DevSecOps." />
+  
+    <!-- OPTIONAL FOR GITHUB PAGES DEPLOYMENT:
+    Uncomment the 3 lines below on your live GitHub Pages site to load Inter,
+    JetBrains Mono, and Newsreader from Google Fonts (disabled by default here
+    so the self-contained file runs with zero external dependencies): -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+ 
+  <style>
+    /* =========================================================================
+       ADRIAN JADE — MINERAL JADE & SLATE EDITORIAL DESIGN SYSTEM
+       Original minimalist brand · Warm alabaster surfaces · Restrained mineral
+       jade accent · Core engineering proof-of-work · Zero decorative clutter
+       ========================================================================= */
+    :root {
+      /* Surfaces — Warm Mineral Alabaster */
+      --bg: #f6f7f5;
+      --surface: #ffffff;
+      --surface-subtle: #eff2f0;
+      --surface-hover: #e7ece9;
+
+      /* Borders */
+      --border: #dfe5e2;
+      --border-strong: #c6d0cc;
+
+      /* Ink — Deep Mineral Slate */
+      --ink: #101614;
+      --ink-secondary: #46514d;
+      --ink-muted: #697570;
+      --ink-faint: #929e99;
+
+      /* Signature Brand Accent — Fine-Tuned Deep Nephrite Mineral Jade */
+      --jade: #115e50;
+      --jade-hover: #0b463b;
+      --jade-soft: #1d7a69;
+      --jade-tint: rgba(17, 94, 80, 0.075);
+      --jade-tint-strong: rgba(17, 94, 80, 0.13);
+      --jade-border: rgba(17, 94, 80, 0.27);
+
+      /* Inverted Controls */
+      --invert-bg: #101614;
+      --invert-fg: #f6f7f5;
+
+      /* Code Surface */
+      --code-bg: #101614;
+      --code-fg: #e7eeeb;
+      --code-muted: #82908b;
+
+      /* Elevation */
+      --shadow-card: 0 1px 2px rgba(16, 22, 20, 0.04);
+      --shadow-card-hover: 0 8px 22px rgba(16, 22, 20, 0.065), 0 1px 3px rgba(16, 22, 20, 0.04);
+      --shadow-overlay: 0 24px 64px rgba(10, 15, 13, 0.18);
+
+      /* Typography */
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+      --font-serif: "Newsreader", Georgia, "Iowan Old Style", "Times New Roman", serif;
+
+      --radius-xs: 5px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-full: 999px;
+
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+      --dur-fast: 150ms;
+      --dur-base: 240ms;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b0e0d;
+      --surface: #121615;
+      --surface-subtle: #181d1b;
+      --surface-hover: #1f2623;
+
+      --border: #222927;
+      --border-strong: #303a37;
+
+      --ink: #eef3f1;
+      --ink-secondary: #a4b0ac;
+      --ink-muted: #76837e;
+      --ink-faint: #4f5b57;
+
+      /* Fine-Tuned Celadon Mineral Jade (high-contrast, non-neon) */
+      --jade: #3bb89c;
+      --jade-hover: #58cca9;
+      --jade-soft: #2c967e;
+      --jade-tint: rgba(59, 184, 156, 0.11);
+      --jade-tint-strong: rgba(59, 184, 156, 0.18);
+      --jade-border: rgba(59, 184, 156, 0.32);
+
+      --invert-bg: #eef3f1;
+      --invert-fg: #0b0e0d;
+
+      --code-bg: #070a09;
+      --code-fg: #e7eeeb;
+      --code-muted: #75847f;
+
+      --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.36);
+      --shadow-card-hover: 0 10px 28px rgba(0, 0, 0, 0.46);
+      --shadow-overlay: 0 28px 72px rgba(0, 0, 0, 0.72);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      transition: background-color var(--dur-base) var(--ease), color var(--dur-base) var(--ease);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+    button:focus-visible, a:focus-visible, input:focus-visible {
+      outline: 2px solid var(--jade);
+      outline-offset: 2px;
+    }
+
+    ::selection {
+      background: var(--jade-tint);
+      color: var(--ink);
+    }
+
+    /* Subtle entrance */
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      animation: reveal 420ms var(--ease) forwards;
+    }
+    .d1 { animation-delay: 40ms; }
+    .d2 { animation-delay: 90ms; }
+    .d3 { animation-delay: 140ms; }
+    .d4 { animation-delay: 190ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; animation: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* =========================================================================
+       TOP NAVIGATION BAR — CLEAN STICKY GLASS HEADER
+       ========================================================================= */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: color-mix(in srgb, var(--bg) 86%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 0.94rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: var(--invert-bg);
+      color: var(--invert-fg);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      position: relative;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      right: -2px;
+      bottom: -2px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--jade);
+      border: 1.5px solid var(--bg);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-item {
+      padding: 6px 11px;
+      border-radius: var(--radius-xs);
+      font-size: 0.85rem;
+      color: var(--ink-secondary);
+      transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+    }
+
+    .nav-item:hover {
+      color: var(--ink);
+      background: var(--surface-subtle);
+    }
+
+    .nav-item.active {
+      color: var(--ink);
+      font-weight: 550;
+      background: var(--surface-subtle);
+    }
+
+    .topbar-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .cmd-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      border-radius: var(--radius-xs);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .cmd-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--ink);
+    }
+
+    .kbd {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      padding: 1px 5px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--surface-subtle);
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    .icon-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-xs);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .icon-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--ink);
+      background: var(--surface-subtle);
+    }
+
+    .mobile-toggle {
+      display: none;
+    }
+
+    .mobile-nav-bar {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+      padding: 10px 24px 14px;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .mobile-nav-bar.open {
+      display: flex;
+    }
+
+    /* =========================================================================
+       CONTAINER & PAGE RHYTHM
+       ========================================================================= */
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 56px 24px 96px;
+    }
+
+    /* =========================================================================
+       HERO — POSITIONING & POSTURE METADATA STRIP
+       ========================================================================= */
+    .hero {
+      margin-bottom: 68px;
+    }
+
+    .availability-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--jade-border);
+      background: var(--jade-tint);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--jade);
+      letter-spacing: 0.01em;
+      margin-bottom: 22px;
+    }
+
+    .jade-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--jade);
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      font-size: clamp(2.15rem, 4.4vw, 3.05rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      color: var(--ink);
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+
+    .hero-title .accent-word {
+      color: var(--jade);
+    }
+
+    .hero-lead {
+      font-size: 1.04rem;
+      line-height: 1.7;
+      color: var(--ink-secondary);
+      max-width: 650px;
+      margin-bottom: 28px;
+    }
+
+    .hero-lead strong {
+      color: var(--ink);
+      font-weight: 560;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 16px;
+      border-radius: var(--radius-xs);
+      font-size: 0.86rem;
+      font-weight: 550;
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .btn-primary {
+      background: var(--invert-bg);
+      color: var(--invert-fg);
+      border: 1px solid var(--invert-bg);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-card);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-subtle);
+      border-color: var(--ink-muted);
+    }
+
+    .btn-ghost {
+      padding: 9px 10px;
+      color: var(--ink-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+    }
+
+    .btn-ghost:hover {
+      color: var(--jade);
+    }
+
+    /* Architectural Posture Strip (Original Identity Element) */
+    .posture-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .posture-cell {
+      padding: 15px 16px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .posture-cell:last-child {
+      border-right: none;
+    }
+
+    .posture-label {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+    }
+
+    .posture-value {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .posture-link {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--jade);
+    }
+
+    .posture-link:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* =========================================================================
+       SECTION STRUCTURE — CLEAN ARCHITECTURAL HEADERS
+       ========================================================================= */
+    .section {
+      margin-bottom: 72px;
+      scroll-margin-top: 84px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--jade);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 1.32rem;
+      font-weight: 650;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .section-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+
+    .section-meta a:hover {
+      color: var(--jade);
+    }
+
+    /* =========================================================================
+       WORK — FILTERABLE SECURITY BLUEPRINTS GRID
+       ========================================================================= */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .filter-pill {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-secondary);
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .filter-pill:hover {
+      border-color: var(--border-strong);
+      color: var(--ink);
+    }
+
+    .filter-pill.active {
+      background: var(--invert-bg);
+      color: var(--invert-fg);
+      border-color: var(--invert-bg);
+    }
+
+    .filter-count {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .work-card {
+      text-align: left;
+      padding: 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      transition: transform var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+    }
+
+    .work-card.featured {
+      grid-column: 1 / -1;
+      padding: 24px;
+      border-color: var(--border-strong);
+      border-top: 2px solid var(--jade);
+    }
+
+    .work-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--jade-border);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    .work-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .work-domain {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: var(--surface-subtle);
+      color: var(--ink-secondary);
+    }
+
+    .status-chip.verified {
+      border-color: var(--jade-border);
+      background: var(--jade-tint);
+      color: var(--jade);
+    }
+
+    .work-title {
+      font-size: 1.04rem;
+      font-weight: 630;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .work-card.featured .work-title {
+      font-size: 1.16rem;
+    }
+
+    .work-summary {
+      font-size: 0.87rem;
+      color: var(--ink-secondary);
+      line-height: 1.58;
+    }
+
+    .work-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .chip {
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      color: var(--ink-muted);
+      background: var(--surface-subtle);
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .inspect-cue {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      color: var(--ink-secondary);
+      white-space: nowrap;
+      transition: color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+    }
+
+    .work-card:hover .inspect-cue {
+      color: var(--jade);
+      transform: translateX(2px);
+    }
+
+    /* =========================================================================
+       DEDICATED PROJECTS REPO & LIVE GITHUB LEDGER
+       ========================================================================= */
+    .repo-hub {
+      border: 1px solid var(--jade-border);
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, var(--jade-tint) 0%, var(--surface) 44%);
+      padding: 22px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .repo-hub-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .repo-hub-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .repo-hub-name svg {
+      color: var(--jade);
+    }
+
+    .repo-hub-desc {
+      font-size: 0.87rem;
+      color: var(--ink-secondary);
+      line-height: 1.58;
+      max-width: 660px;
+      margin-top: 6px;
+    }
+
+    .repo-tree {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .repo-tree-cell {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .repo-tree-dir {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--jade);
+    }
+
+    .repo-tree-note {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    .repo-hub-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .sync-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .sync-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--ink-muted);
+    }
+
+    .sync-pill.live {
+      border-color: var(--jade-border);
+      background: var(--jade-tint);
+      color: var(--jade);
+    }
+
+    .mini-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 9px;
+      border-radius: var(--radius-xs);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink-secondary);
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .mini-action-btn:hover {
+      border-color: var(--jade-border);
+      color: var(--jade);
+      background: var(--jade-tint);
+    }
+
+    .repo-ledger {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .repo-row {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      transition: background-color var(--dur-fast) var(--ease);
+    }
+
+    .repo-row:last-child {
+      border-bottom: none;
+    }
+
+    .repo-row:hover {
+      background: var(--surface-subtle);
+    }
+
+    .repo-head-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .repo-name-link {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .repo-name-link:hover {
+      color: var(--jade);
+    }
+
+    .repo-desc {
+      font-size: 0.84rem;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .repo-meta-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+    }
+
+    .lang-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--ink-secondary);
+    }
+
+    .lang-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--jade);
+      flex-shrink: 0;
+    }
+
+    .repo-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    /* =========================================================================
+       FIELD NOTES — EDITORIAL LEDGER
+       ========================================================================= */
+    .notes-ledger {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .note-row {
+      width: 100%;
+      text-align: left;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: baseline;
+      transition: background-color var(--dur-fast) var(--ease);
+    }
+
+    .note-row:last-child {
+      border-bottom: none;
+    }
+
+    .note-row:hover {
+      background: var(--surface-subtle);
+    }
+
+    .note-date {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+    }
+
+    .note-title {
+      font-size: 0.96rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .note-row:hover .note-title {
+      color: var(--jade);
+    }
+
+    .note-excerpt {
+      font-size: 0.85rem;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .note-read {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+
+    /* =========================================================================
+       BACKGROUND — EXPERIENCE + STRUCTURED CAPABILITIES MATRIX
+       ========================================================================= */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .exp-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .exp-trigger {
+      width: 100%;
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: baseline;
+      text-align: left;
+      transition: background-color var(--dur-fast) var(--ease);
+    }
+
+    .exp-trigger:hover {
+      background: var(--surface-subtle);
+    }
+
+    .exp-period {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+    }
+
+    .exp-role {
+      font-size: 0.95rem;
+      font-weight: 610;
+      color: var(--ink);
+    }
+
+    .exp-org {
+      font-size: 0.83rem;
+      color: var(--ink-secondary);
+      margin-top: 2px;
+    }
+
+    .exp-chevron {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--ink-muted);
+    }
+
+    .exp-panel {
+      padding: 0 20px 18px 148px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 16px;
+      font-size: 0.86rem;
+      color: var(--ink-secondary);
+      line-height: 1.58;
+    }
+
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 1.5px;
+      background: var(--jade);
+    }
+
+    /* Core Capabilities Grid (4 Pillars) */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .pillar-card {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow-card);
+    }
+
+    .pillar-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--jade);
+      margin-bottom: 10px;
+    }
+
+    .pillar-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pillar-tag {
+      font-size: 0.79rem;
+      color: var(--ink-secondary);
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      padding: 3px 9px;
+      border-radius: var(--radius-xs);
+    }
+
+    /* =========================================================================
+       CREDENTIALS LEDGER
+       ========================================================================= */
+    .cred-ledger {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .cred-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border);
+      transition: background-color var(--dur-fast) var(--ease);
+    }
+
+    .cred-row:last-child {
+      border-bottom: none;
+    }
+
+    .cred-row:hover {
+      background: var(--surface-subtle);
+    }
+
+    .cred-main {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .cred-code {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .cred-row.verified .cred-code {
+      border-color: var(--jade-border);
+      background: var(--jade-tint);
+      color: var(--jade);
+    }
+
+    .cred-name {
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .cred-issuer {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .cred-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .cred-verify {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--ink-secondary);
+    }
+
+    .cred-row:hover .cred-verify {
+      color: var(--jade);
+    }
+
+    /* =========================================================================
+       FOOTER — CLEAN CONTACT BAND
+       ========================================================================= */
+    .footer-card {
+      padding: 28px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-heading {
+      font-size: 1.24rem;
+      font-weight: 650;
+      letter-spacing: -0.025em;
+      margin-bottom: 6px;
+    }
+
+    .footer-copy {
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+      max-width: 460px;
+    }
+
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .colophon {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+    }
+
+    /* =========================================================================
+       SLIDE-OVER DRAWER (CASE STUDY + FIELD NOTE READER)
+       ========================================================================= */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(12, 14, 13, 0.46);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .drawer {
+      width: 100%;
+      max-width: 650px;
+      height: 100%;
+      background: var(--surface);
+      border-left: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-overlay);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drawer-head {
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .drawer-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--jade);
+      margin-bottom: 5px;
+    }
+
+    .drawer-title {
+      font-size: 1.18rem;
+      font-weight: 650;
+      letter-spacing: -0.025em;
+      line-height: 1.28;
+    }
+
+    .drawer-tabs {
+      display: flex;
+      gap: 6px;
+      padding: 10px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-subtle);
+    }
+
+    .drawer-tab {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      padding: 5px 11px;
+      border-radius: var(--radius-xs);
+      color: var(--ink-secondary);
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .drawer-tab:hover {
+      color: var(--ink);
+      background: var(--surface-hover);
+    }
+
+    .drawer-tab.active {
+      background: var(--invert-bg);
+      color: var(--invert-fg);
+    }
+
+    .drawer-body {
+      padding: 24px 24px 40px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .drawer-section h4 {
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+    }
+
+    .drawer-section p {
+      font-size: 0.91rem;
+      color: var(--ink-secondary);
+      line-height: 1.68;
+    }
+
+    .diagram-frame {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    .code-frame {
+      border-radius: var(--radius-sm);
+      background: var(--code-bg);
+      color: var(--code-fg);
+      border: 1px solid var(--border-strong);
+      overflow: hidden;
+    }
+
+    .code-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--code-muted);
+    }
+
+    .code-copy {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 2px 9px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--code-fg);
+    }
+
+    .code-copy:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .code-pre {
+      padding: 16px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .serif-callout {
+      padding: 13px 16px;
+      border-left: 3px solid var(--jade);
+      background: var(--jade-tint);
+      border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+      font-size: 0.86rem;
+      color: var(--ink);
+      line-height: 1.58;
+    }
+
+    .serif-article {
+      font-family: var(--font-serif);
+      font-size: 1.07rem;
+      line-height: 1.8;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .drawer-foot {
+      padding: 14px 24px;
+      border-top: 1px solid var(--border);
+      background: var(--surface-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* =========================================================================
+       QUICK JUMP COMMAND PALETTE (⌘K / Ctrl+K)
+       ========================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      background: rgba(12, 14, 13, 0.5);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 12vh 16px 16px;
+    }
+
+    .palette {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-overlay);
+      overflow: hidden;
+    }
+
+    .palette-input-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .palette-input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--ink);
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    .palette-list {
+      max-height: 340px;
+      overflow-y: auto;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .palette-group {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      padding: 8px 10px 4px;
+    }
+
+    .palette-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 10px;
+      border-radius: var(--radius-xs);
+      font-size: 0.86rem;
+      color: var(--ink-secondary);
+      text-align: left;
+      transition: background-color var(--dur-fast) var(--ease);
+    }
+
+    .palette-item:hover {
+      background: var(--surface-subtle);
+      color: var(--ink);
+    }
+
+    .palette-kind {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--ink-faint);
+      white-space: nowrap;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      z-index: 150;
+      background: var(--invert-bg);
+      color: var(--invert-fg);
+      padding: 9px 14px;
+      border-radius: var(--radius-xs);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    /* =========================================================================
+       RESPONSIVE & PRINT RESUME BRIEF
+       ========================================================================= */
+    @media (max-width: 780px) {
+      .nav-links, .cmd-btn { display: none; }
+      .mobile-toggle { display: inline-flex; }
+      .posture-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .posture-cell:nth-child(2) { border-right: none; }
+      .posture-cell:nth-child(1), .posture-cell:nth-child(2) { border-bottom: 1px solid var(--border); }
+      .work-grid, .pillars-grid { grid-template-columns: 1fr; }
+      .repo-tree { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .repo-row { grid-template-columns: 1fr; gap: 12px; }
+      .note-row { grid-template-columns: 1fr; gap: 5px; }
+      .exp-trigger { grid-template-columns: 1fr auto; gap: 4px 12px; }
+      .exp-period { grid-column: 1 / -1; }
+      .exp-panel { padding-left: 20px; }
+      .cred-row { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 520px) {
+      .container { padding: 36px 18px 72px; }
+      .posture-strip { grid-template-columns: 1fr; }
+      .posture-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .posture-cell:last-child { border-bottom: none; }
+      .repo-tree { grid-template-columns: 1fr; }
+      .section-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+
+    @media print {
+      .topbar, .hero-actions, .filter-bar, .inspect-cue, .exp-chevron, .footer-actions, .sync-bar, .repo-actions, .backdrop, .modal-backdrop, .toast {
+        display: none !important;
+      }
+      body { background: #ffffff; color: #101614; font-size: 10.5pt; }
+      .container { max-width: 100%; padding: 0; }
+      .work-card, .repo-hub, .repo-ledger, .notes-ledger, .exp-card, .pillar-card, .cred-ledger, .posture-strip, .footer-card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+      .exp-panel { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script>
+    /* =========================================================================
+       INLINE REACT-COMPATIBLE RUNTIME (Zero External CDN Dependencies)
+       Enables standard React component patterns (createElement, Fragment,
+       useState, useEffect, useMemo, useRef, ReactDOM.createRoot) in a single
+       self-contained index.html for GitHub Pages.
+       ========================================================================= */
+    const React = (() => {
+      const TEXT = Symbol("TEXT");
+      const Fragment = Symbol("Fragment");
+
+      const SVG_ATTR_MAP = {
+        strokeWidth: "stroke-width",
+        strokeLinecap: "stroke-linecap",
+        strokeLinejoin: "stroke-linejoin",
+        strokeDasharray: "stroke-dasharray",
+        textAnchor: "text-anchor",
+        fontFamily: "font-family",
+        fontSize: "font-size",
+        fontWeight: "font-weight"
+      };
+
+      let currentInstance = null;
+      let hookCursor = 0;
+      let rootContainer = null;
+      let rootElement = null;
+      let rootInstance = null;
+      let pendingEffects = [];
+      let renderScheduled = false;
+
+      function flattenChildren(input, out = []) {
+        for (let i = 0; i < input.length; i++) {
+          const item = input[i];
+          if (item === null || item === undefined || typeof item === "boolean") continue;
+          if (Array.isArray(item)) flattenChildren(item, out);
+          else if (typeof item === "string" || typeof item === "number") {
+            out.push({ type: TEXT, key: null, props: { nodeValue: String(item) }, children: [] });
+          } else {
+            out.push(item);
+          }
+        }
+        return out;
+      }
+
+      function createElement(type, rawProps, ...rawChildren) {
+        const props = {};
+        let key = null;
+        if (rawProps) {
+          for (const k in rawProps) {
+            if (k === "key") key = rawProps[k] == null ? null : String(rawProps[k]);
+            else if (k !== "children") props[k] = rawProps[k];
+          }
+        }
+        const children = flattenChildren(
+          rawChildren.length > 0 ? rawChildren : (rawProps && rawProps.children !== undefined ? [rawProps.children] : [])
+        );
+        return { type, key, props, children };
+      }
+
+      function scheduleRender() {
+        if (renderScheduled) return;
+        renderScheduled = true;
+        queueMicrotask(() => {
+          renderScheduled = false;
+          if (!rootContainer || !rootElement) return;
+          pendingEffects = [];
+          rootInstance = reconcile(rootInstance, rootElement, rootContainer, null, false);
+          flushEffects();
+        });
+      }
+
+      function flushEffects() {
+        const queue = pendingEffects;
+        pendingEffects = [];
+        for (const item of queue) {
+          if (typeof item.hook.cleanup === "function") item.hook.cleanup();
+          const cleanup = item.fn();
+          item.hook.cleanup = typeof cleanup === "function" ? cleanup : null;
+        }
+      }
+
+      function depsChanged(prev, next) {
+        if (!prev || !next || prev.length !== next.length) return true;
+        for (let i = 0; i < prev.length; i++) if (!Object.is(prev[i], next[i])) return true;
+        return false;
+      }
+
+      function useState(initial) {
+        const inst = currentInstance;
+        const idx = hookCursor++;
+        if (inst.hooks.length <= idx) {
+          const value = typeof initial === "function" ? initial() : initial;
+          const hook = {
+            kind: "state",
+            value,
+            setState(next) {
+              const resolved = typeof next === "function" ? next(hook.value) : next;
+              if (!Object.is(hook.value, resolved)) {
+                hook.value = resolved;
+                scheduleRender();
+              }
+            }
+          };
+          inst.hooks.push(hook);
+        }
+        const h = inst.hooks[idx];
+        return [h.value, h.setState];
+      }
+
+      function useEffect(fn, deps) {
+        const inst = currentInstance;
+        const idx = hookCursor++;
+        if (inst.hooks.length <= idx) {
+          const hook = { kind: "effect", deps, cleanup: null };
+          inst.hooks.push(hook);
+          pendingEffects.push({ hook, fn });
+        } else {
+          const hook = inst.hooks[idx];
+          if (deps === undefined || depsChanged(hook.deps, deps)) {
+            hook.deps = deps;
+            pendingEffects.push({ hook, fn });
+          }
+        }
+      }
+
+      function useMemo(factory, deps) {
+        const inst = currentInstance;
+        const idx = hookCursor++;
+        if (inst.hooks.length <= idx) {
+          const value = factory();
+          inst.hooks.push({ kind: "memo", deps, value });
+          return value;
+        }
+        const hook = inst.hooks[idx];
+        if (depsChanged(hook.deps, deps)) {
+          hook.deps = deps;
+          hook.value = factory();
+        }
+        return hook.value;
+      }
+
+      function useRef(initial) {
+        const inst = currentInstance;
+        const idx = hookCursor++;
+        if (inst.hooks.length <= idx) inst.hooks.push({ kind: "ref", ref: { current: initial } });
+        return inst.hooks[idx].ref;
+      }
+
+      function getDomNodes(inst, out = []) {
+        if (!inst) return out;
+        if (inst.kind === "text" || inst.kind === "host") out.push(inst.dom);
+        else if (inst.kind === "fn") getDomNodes(inst.child, out);
+        else if (inst.kind === "frag") for (const c of inst.children) getDomNodes(c, out);
+        return out;
+      }
+
+      function setProp(dom, key, value, prevValue, isSvg) {
+        if (key === "ref") {
+          if (typeof value === "function") value(dom);
+          else if (value && typeof value === "object") value.current = dom;
+          return;
+        }
+        if (key === "className") {
+          if (!value) dom.removeAttribute("class");
+          else dom.setAttribute("class", value);
+          return;
+        }
+        if (key === "style") {
+          if (prevValue && typeof prevValue === "object") {
+            for (const s in prevValue) if (!value || !(s in value)) dom.style[s] = "";
+          }
+          if (value && typeof value === "object") {
+            for (const s in value) dom.style[s] = value[s] == null ? "" : value[s];
+          }
+          return;
+        }
+        if (key.startsWith("on") && key.length > 2) {
+          let ev = key.slice(2).toLowerCase();
+          if (ev === "change" && (dom.tagName === "INPUT" || dom.tagName === "TEXTAREA")) ev = "input";
+          dom._listeners = dom._listeners || {};
+          if (dom._listeners[key]) {
+            dom.removeEventListener(ev, dom._listeners[key]);
+            delete dom._listeners[key];
+          }
+          if (typeof value === "function") {
+            dom._listeners[key] = value;
+            dom.addEventListener(ev, value);
+          }
+          return;
+        }
+        if (!isSvg && (key === "value" || key === "checked" || key === "selected")) {
+          const normalized = value == null ? "" : value;
+          if (dom[key] !== normalized) dom[key] = normalized;
+          return;
+        }
+        const attr = isSvg && SVG_ATTR_MAP[key] ? SVG_ATTR_MAP[key] : key;
+        if (value == null || value === false) dom.removeAttribute(attr);
+        else if (value === true) dom.setAttribute(attr, "");
+        else dom.setAttribute(attr, String(value));
+      }
+
+      function updateProps(dom, prevProps, nextProps, isSvg) {
+        for (const k in prevProps) if (!(k in nextProps)) setProp(dom, k, null, prevProps[k], isSvg);
+        for (const k in nextProps) if (!Object.is(prevProps[k], nextProps[k]) || k === "value") setProp(dom, k, nextProps[k], prevProps[k], isSvg);
+      }
+
+      function unmount(inst) {
+        if (!inst) return;
+        if (inst.kind === "fn") {
+          for (const h of inst.hooks) if (h.kind === "effect" && typeof h.cleanup === "function") h.cleanup();
+          unmount(inst.child);
+        } else if (inst.kind === "frag") {
+          for (const c of inst.children) unmount(c);
+        } else if (inst.kind === "host") {
+          for (const c of inst.children) unmount(c);
+          if (inst.dom.parentNode) inst.dom.parentNode.removeChild(inst.dom);
+        } else if (inst.kind === "text") {
+          if (inst.dom.parentNode) inst.dom.parentNode.removeChild(inst.dom);
+        }
+      }
+
+      function reconcileChildren(oldChildren, newVnodes, parentDom, anchorDom, isSvg) {
+        const oldMap = new Map();
+        oldChildren.forEach((child, idx) => oldMap.set(child.key !== null ? `k:${child.key}` : `i:${idx}`, child));
+        const nextInstances = [];
+        for (let i = 0; i < newVnodes.length; i++) {
+          const vnode = newVnodes[i];
+          const mapKey = vnode.key !== null ? `k:${vnode.key}` : `i:${i}`;
+          let matched = oldMap.get(mapKey) || null;
+          if (matched && matched.type === vnode.type) oldMap.delete(mapKey);
+          else matched = null;
+          const inst = reconcile(matched, vnode, parentDom, anchorDom, isSvg, true);
+          if (inst) nextInstances.push(inst);
+        }
+        for (const unused of oldMap.values()) unmount(unused);
+
+        let cursor = anchorDom;
+        for (let i = nextInstances.length - 1; i >= 0; i--) {
+          const doms = getDomNodes(nextInstances[i]);
+          for (let j = doms.length - 1; j >= 0; j--) {
+            const node = doms[j];
+            if (node.parentNode !== parentDom || node.nextSibling !== cursor) parentDom.insertBefore(node, cursor);
+            cursor = node;
+          }
+        }
+        return nextInstances;
+      }
+
+      function reconcile(oldInst, vnode, parentDom, anchorDom, isSvg, deferPlacement = false) {
+        if (!vnode) { if (oldInst) unmount(oldInst); return null; }
+        if (oldInst && (oldInst.type !== vnode.type || oldInst.key !== vnode.key)) { unmount(oldInst); oldInst = null; }
+
+        if (vnode.type === TEXT) {
+          if (oldInst) {
+            if (oldInst.text !== vnode.props.nodeValue) {
+              oldInst.text = vnode.props.nodeValue;
+              oldInst.dom.nodeValue = oldInst.text;
+            }
+            return oldInst;
+          }
+          const dom = document.createTextNode(vnode.props.nodeValue);
+          if (!deferPlacement) parentDom.insertBefore(dom, anchorDom);
+          return { kind: "text", type: TEXT, key: null, text: vnode.props.nodeValue, dom };
+        }
+
+        if (vnode.type === Fragment) {
+          const inst = oldInst || { kind: "frag", type: Fragment, key: vnode.key, children: [] };
+          inst.children = reconcileChildren(inst.children, vnode.children, parentDom, anchorDom, isSvg);
+          return inst;
+        }
+
+        if (typeof vnode.type === "function") {
+          const inst = oldInst || { kind: "fn", type: vnode.type, key: vnode.key, hooks: [], child: null };
+          const prevInstance = currentInstance;
+          const prevCursor = hookCursor;
+          currentInstance = inst;
+          hookCursor = 0;
+          const rendered = vnode.type({ ...vnode.props, children: vnode.children });
+          currentInstance = prevInstance;
+          hookCursor = prevCursor;
+
+          const normalized =
+            rendered === null || rendered === undefined || typeof rendered === "boolean" ? null
+            : (typeof rendered === "string" || typeof rendered === "number")
+              ? { type: TEXT, key: null, props: { nodeValue: String(rendered) }, children: [] }
+              : rendered;
+
+          inst.child = reconcile(inst.child, normalized, parentDom, anchorDom, isSvg, deferPlacement);
+          return inst;
+        }
+
+        const nextIsSvg = isSvg || vnode.type === "svg";
+        if (oldInst) {
+          updateProps(oldInst.dom, oldInst.props, vnode.props, nextIsSvg);
+          oldInst.props = vnode.props;
+          oldInst.children = reconcileChildren(oldInst.children, vnode.children, oldInst.dom, null, nextIsSvg);
+          return oldInst;
+        }
+
+        const dom = nextIsSvg
+          ? document.createElementNS("http://www.w3.org/2000/svg", vnode.type)
+          : document.createElement(vnode.type);
+        updateProps(dom, {}, vnode.props, nextIsSvg);
+        const inst = { kind: "host", type: vnode.type, key: vnode.key, props: vnode.props, children: [], dom };
+        inst.children = reconcileChildren([], vnode.children, dom, null, nextIsSvg);
+        if (!deferPlacement) parentDom.insertBefore(dom, anchorDom);
+        return inst;
+      }
+
+      const ReactDOM = {
+        createRoot(container) {
+          return {
+            render(element) {
+              rootContainer = container;
+              rootElement = element;
+              container.innerHTML = "";
+              rootInstance = null;
+              pendingEffects = [];
+              rootInstance = reconcile(null, element, container, null, false);
+              flushEffects();
+            }
+          };
+        }
+      };
+
+      return { createElement, Fragment, useState, useEffect, useMemo, useRef, ReactDOM };
+    })();
+
+    const h = React.createElement;
+
+    /* =========================================================================
+       PORTFOLIO DATA — SINGLE SOURCE OF TRUTH FOR YOUR GITHUB PAGES SITE
+       Edit only this object to update your name, links, projects, and history.
+       ========================================================================= */
+    const PORTFOLIO = {
+      name: "AJ Manaday",
+      monogram: "Jade",
+      role: "Security Engineer",
+      availability: "Open to Cloud Security Engineer, DevOps/DevSecOps Roles",
+      email: "adrianjademanaday@gmail.com", // Replace with your personal public contact email
+      githubHandle: "adrianjadev",
+      githubUrl: "https://github.com/adrianjadev",
+      linkedinUrl: "https://linkedin.com/in/adrianjadev",
+      skillsProfileUrl: "https://www.skills.google/public_profiles/a9518546-af4d-48b3-900f-64afda9d132c",
+
+      posture: [
+        { label: "Primary Domain", value: "GCP IAM · Zero-Trust VPC" },
+        { label: "Active Track", value: "GCP Cybersecurity · ACE" },
+        { label: "Projects Repo", value: "gcp-security-blueprints", href: "https://github.com/adrianjadev/gcp-security-blueprints" }
+      ],
+
+      /* Dedicated Projects Hub Repository + Live GitHub API Sync Config */
+      projectsHub: {
+        name: "gcp-security-blueprints",
+        fullName: "adrianjadev/gcp-security-blueprints",
+        url: "https://github.com/adrianjadev/gcp-security-blueprints",
+        cloneUrl: "https://github.com/adrianjadev/gcp-security-blueprints.git",
+        description: "Central monorepo housing my hardened Google Cloud Terraform modules, least-privilege IAM policies, distroless Kubernetes templates, and GitHub Actions DevSecOps gates (Checkov, Trivy, Gitleaks).",
+        structure: [
+          { dir: "terraform/", note: "Custom VPCs, IAP firewalls & GCS state" },
+          { dir: "iam-policies/", note: "Least-privilege YAML roles & auditor" },
+          { dir: "containers/", note: "Distroless Dockerfiles & K8s manifests" },
+          { dir: ".github/workflows/", note: "Automated Checkov, Trivy & Gitleaks CI" }
+        ]
+      },
+
+      githubSync: {
+        enabled: true, // Automatically fetches live public repos from github.com/adrianjadev when hosted on GitHub Pages
+        maxRepos: 8
+      },
+
+      /* Curated fallback repository index (shown in offline preview or before public repos are pushed) */
+      fallbackRepos: [
+        {
+          name: "gcp-security-blueprints",
+          description: "Dedicated cloud security hub: Terraform GCP baselines, custom IAM policies, container hardening, and DevSecOps CI workflows.",
+          language: "HCL",
+          topics: ["gcp", "terraform", "cloud-security", "devsecops"],
+          url: "https://github.com/adrianjadev/gcp-security-blueprints",
+          cloneUrl: "https://github.com/adrianjadev/gcp-security-blueprints.git",
+          stars: 0,
+          forks: 0,
+          updated: "Nov 2026",
+          featured: true
+        },
+        {
+          name: "gcp-terraform-infra-baseline",
+          description: "Modular GCP Compute, custom VPC, GCS remote state, and IAP-only SSH rules rebuilt from GSP345 (100/100).",
+          language: "HCL",
+          topics: ["terraform", "gcp-vpc", "checkov"],
+          url: "https://github.com/adrianjadev/gcp-terraform-infra-baseline",
+          cloneUrl: "https://github.com/adrianjadev/gcp-terraform-infra-baseline.git",
+          stars: 0,
+          forks: 0,
+          updated: "Nov 2026"
+        },
+        {
+          name: "gcp-multi-vpc-gke-segmentation",
+          description: "Custom-mode dev/prod VPC isolation, dual-NIC management bastion, and GKE Cloud SQL Auth Proxy topology (GSP321).",
+          language: "HCL",
+          topics: ["gke", "zero-trust", "networking"],
+          url: "https://github.com/adrianjadev/gcp-multi-vpc-gke-segmentation",
+          cloneUrl: "https://github.com/adrianjadev/gcp-multi-vpc-gke-segmentation.git",
+          stars: 0,
+          forks: 0,
+          updated: "Nov 2026"
+        },
+        {
+          name: "gcp-iam-least-privilege-lab",
+          description: "Declarative custom IAM roles and Python/gcloud policy auditor detecting primitive Owner/Editor roles and stale SA keys.",
+          language: "Python",
+          topics: ["gcp-iam", "least-privilege", "audit"],
+          url: "https://github.com/adrianjadev/gcp-iam-least-privilege-lab",
+          cloneUrl: "https://github.com/adrianjadev/gcp-iam-least-privilege-lab.git",
+          stars: 0,
+          forks: 0,
+          updated: "Nov 2026"
+        },
+        {
+          name: "k8s-container-hardening-lab",
+          description: "Multi-stage distroless non-root container migration with strict Kubernetes SecurityContext and Trivy CVE CI gate.",
+          language: "Dockerfile",
+          topics: ["kubernetes", "distroless", "trivy"],
+          url: "https://github.com/adrianjadev/k8s-container-hardening-lab",
+          cloneUrl: "https://github.com/adrianjadev/k8s-container-hardening-lab.git",
+          stars: 0,
+          forks: 0,
+          updated: "Nov 2026"
+        },
+        {
+          name: "gcp-kms-data-protection-lab",
+          description: "Cloud KMS symmetric key rings with 90-day automatic rotation and CMEK-enforced private Cloud Storage buckets.",
+          language: "HCL",
+          topics: ["cloud-kms", "cmek", "encryption"],
+          url: "https://github.com/adrianjadev/gcp-kms-data-protection-lab",
+          cloneUrl: "https://github.com/adrianjadev/gcp-kms-data-protection-lab.git",
+          stars: 0,
+          forks: 0,
+          updated: "Nov 2026"
+        }
+      ],
+
+      projects: [
+        {
+          id: "gsp345-terraform-baseline",
+          featured: true,
+          category: "Terraform & IaC",
+          status: "Verified Lab · 100/100",
+          verified: true,
+          title: "GCP Infrastructure as Code Security Baseline",
+          repoName: "gcp-terraform-infra-baseline",
+          repoUrl: "https://github.com/adrianjadev/gcp-terraform-infra-baseline",
+          summary: "Reusable Terraform modules provisioning custom VPCs, hardened Compute Engine instances, versioned GCS remote state, and IAP-only SSH firewall policies—rebuilt cleanly from the GSP345 Skill Badge.",
+          problem: "Manual console provisioning produces undocumented firewall exceptions, unversioned infrastructure drift, and inconsistent security controls across environments.",
+          controls: [
+            "Structured compute, VPC, and storage layers into composable Terraform modules with strict input validation.",
+            "Isolated Terraform state inside a versioned Cloud Storage backend with strict .gitignore rules preventing state or tfvars exposure.",
+            "Wired GitHub Actions CI running terraform fmt -check, terraform validate, and Checkov CIS GCP static checks on every pull request."
+          ],
+          verification: "Scored 100/100 on Google Cloud Challenge Lab GSP345; confirmed zero-drift terraform plan and passing Checkov baseline scans.",
+          stack: ["Terraform", "GCP VPC", "Cloud Storage", "Compute Engine", "Checkov", "GitHub Actions"],
+          diagramType: "terraform-ci",
+          artifactFilename: "iap-firewall.tf",
+          artifactCode: `terraform {
+  required_version = ">= 1.6.0"
+  backend "gcs" {
+    bucket = "tf-state-security-baseline"
+    prefix = "terraform/state"
+  }
+}
+
+resource "google_compute_firewall" "allow_iap_ssh" {
+  name          = "allow-ssh-via-iap-only"
+  network       = google_compute_network.custom_vpc.id
+  direction     = "INGRESS"
+  priority      = 1000
+  source_ranges = ["35.235.240.0/20"] # Google Identity-Aware Proxy
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  log_config {
+    metadata = "INCLUDE_ALL_METADATA"
+  }
+}`
+        },
+        {
+          id: "gsp321-multi-vpc-gke",
+          featured: false,
+          category: "Networking",
+          status: "Verified Lab · GSP321",
+          verified: true,
+          title: "Multi-VPC Segmentation & GKE Workload Isolation",
+          repoName: "gcp-multi-vpc-gke-segmentation",
+          repoUrl: "https://github.com/adrianjadev/gcp-multi-vpc-gke-segmentation",
+          summary: "Custom-mode dev and prod VPCs separated across four /20 subnets with a dual-NIC management bastion, GKE workload backed by Cloud SQL Auth Proxy, and role-scoped Cloud Monitoring.",
+          problem: "Auto-mode VPCs flatten trust boundaries, letting compromised application workloads reach management planes or production databases.",
+          controls: [
+            "Provisioned custom-mode VPCs (griffin-dev-vpc, griffin-prod-vpc) separating application and management tiers.",
+            "Deployed a dual-NIC bastion host restricted to management subnets so application nodes never expose direct public SSH.",
+            "Connected GKE pods to Cloud SQL via the Auth Proxy sidecar and delegated observability strictly via roles/monitoring.editor."
+          ],
+          verification: "Completed GSP321 Challenge Lab; validated subnet isolation, Cloud Monitoring uptime alerts, and scoped IAM bindings.",
+          stack: ["GCP VPC", "GKE", "Dual-NIC Bastion", "Cloud SQL Proxy", "Cloud IAM"],
+          diagramType: "multi-vpc",
+          artifactFilename: "vpc-segmentation.tf",
+          artifactCode: `resource "google_compute_network" "dev_vpc" {
+  name                    = "griffin-dev-vpc"
+  auto_create_subnetworks = false
+}
+
+resource "google_compute_subnetwork" "dev_app" {
+  name                     = "griffin-dev-wp"
+  ip_cidr_range            = "192.168.16.0/20"
+  network                  = google_compute_network.dev_vpc.id
+  private_ip_google_access = true
+}
+
+resource "google_compute_subnetwork" "dev_mgmt" {
+  name          = "griffin-dev-mgmt"
+  ip_cidr_range = "192.168.32.0/20"
+  network       = google_compute_network.dev_vpc.id
+}`
+        },
+        {
+          id: "iam-least-privilege-auditor",
+          featured: false,
+          category: "IAM & Zero Trust",
+          status: "Security Blueprint",
+          verified: false,
+          title: "Least-Privilege IAM & Custom Role Policy Auditor",
+          repoName: "gcp-iam-least-privilege-lab",
+          repoUrl: "https://github.com/adrianjadev/gcp-iam-least-privilege-lab",
+          summary: "Declarative custom IAM roles paired with an automated Python/gcloud auditor flagging primitive Owner/Editor assignments, stale user-managed SA keys, and unconditioned bindings.",
+          problem: "Broad primitive roles and static JSON service account keys expand blast radius during credential compromise and break least-privilege compliance.",
+          controls: [
+            "Authored version-controlled custom read-only role definitions in YAML replacing basic Viewer/Editor assignments.",
+            "Built an audit check that flags primitive roles and user-managed service account keys older than 90 days.",
+            "Documented SSO federation and time-bound IAM Conditions for break-glass elevation."
+          ],
+          verification: "Verified non-zero CI exits when sample IAM policies introduce roles/owner or static key drift.",
+          stack: ["GCP IAM", "SSO", "IAM Conditions", "Python", "gcloud CLI"],
+          diagramType: "iam-flow",
+          artifactFilename: "auditor-role.yaml",
+          artifactCode: `title: "Cloud Security Posture Auditor"
+description: "Minimal read-only role replacing primitive Viewer/Editor bindings."
+stage: "GA"
+includedPermissions:
+  - compute.firewalls.list
+  - compute.networks.list
+  - iam.roles.get
+  - iam.serviceAccounts.list
+  - iam.serviceAccountKeys.list
+  - resourcemanager.projects.getIamPolicy
+  - cloudkms.cryptoKeys.list`
+        },
+        {
+          id: "distroless-k8s-hardening",
+          featured: false,
+          category: "Containers & KMS",
+          status: "Security Blueprint",
+          verified: false,
+          title: "Distroless Container Hardening & Trivy CI Gate",
+          repoName: "k8s-container-hardening-lab",
+          repoUrl: "https://github.com/adrianjadev/k8s-container-hardening-lab",
+          summary: "Before-and-after container hardening study migrating a root-user image to a multi-stage distroless build with strict Kubernetes Pod SecurityContext controls and Trivy CVE gating.",
+          problem: "Default container base images ship package managers, shells, and UID 0 execution, inflating attack surface and post-exploit impact.",
+          controls: [
+            "Refactored into a multi-stage Dockerfile targeting distroless static non-root (UID 65532) with zero shell binaries.",
+            "Enforced readOnlyRootFilesystem, allowPrivilegeEscalation: false, and capabilities drop ALL in Kubernetes manifests.",
+            "Added a GitHub Actions Trivy gate blocking merges on CRITICAL or fixable HIGH vulnerabilities."
+          ],
+          verification: "Measured Trivy CVE reduction between baseline and distroless builds and verified immutable root filesystem behavior.",
+          stack: ["Kubernetes", "Docker", "Distroless", "Trivy", "GitHub Actions"],
+          diagramType: "container-ci",
+          artifactFilename: "Dockerfile.hardened",
+          artifactCode: `FROM golang:1.22-alpine AS builder
+WORKDIR /src
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags="-s -w" -o /out/app .
+
+# Zero shell, zero package manager, non-root runtime
+FROM gcr.io/distroless/static-debian12:nonroot
+USER nonroot:nonroot
+COPY --from=builder /out/app /app
+EXPOSE 8080
+ENTRYPOINT ["/app"]`
+        },
+        {
+          id: "kms-cmek-vault",
+          featured: false,
+          category: "Containers & KMS",
+          status: "Security Blueprint",
+          verified: false,
+          title: "Cloud KMS Key Lifecycle & CMEK Storage Vault",
+          repoName: "gcp-kms-data-protection-lab",
+          repoUrl: "https://github.com/adrianjadev/gcp-kms-data-protection-lab",
+          summary: "Terraform-provisioned Cloud KMS key rings enforcing 90-day automatic symmetric rotation, CMEK-encrypted Cloud Storage buckets, and public-access prevention for restricted PII.",
+          problem: "Sensitive cloud data stored without customer-managed encryption keys, rotation schedules, or bucket access guards increases compliance and leak risk.",
+          controls: [
+            "Provisioned Cloud KMS symmetric keys with 90-day automatic rotation and prevent_destroy lifecycle guards.",
+            "Enforced CMEK encryption, uniform bucket-level access, and public_access_prevention on storage buckets.",
+            "Mapped data classification tiers (Public, Internal, Confidential, Restricted PII) to encryption controls."
+          ],
+          verification: "Verified key rotation state via gcloud kms keys versions list and confirmed unauthorized decrypt denials.",
+          stack: ["Cloud KMS", "CMEK", "Cloud Storage", "Terraform", "Data Protection"],
+          diagramType: "kms-flow",
+          artifactFilename: "kms-vault.tf",
+          artifactCode: `resource "google_kms_crypto_key" "pii_cmek" {
+  name            = "pii-vault-cmek"
+  key_ring        = google_kms_key_ring.sec_ring.id
+  rotation_period = "7776000s" # 90-day automatic rotation
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "google_storage_bucket" "restricted_vault" {
+  name                        = "\${var.project_id}-restricted-vault"
+  location                    = var.region
+  uniform_bucket_level_access = true
+  public_access_prevention    = "enforced"
+
+  encryption {
+    default_kms_key_name = google_kms_crypto_key.pii_cmek.id
+  }
+}`
+        }
+      ],
+
+      notes: [
+        {
+          id: "gsp345-terraform-hygiene",
+          date: "Nov 2026",
+          readTime: "3 min",
+          title: "Scoring 100/100 on GSP345: Terraform Modules & Remote State Hygiene",
+          excerpt: "Turning ad-hoc console changes into auditable GCP modules, isolating GCS state, and gating PRs with static security checks.",
+          callout: "Infrastructure as Code only functions as a security control when state files are remote, versioned, and verified automatically before apply.",
+          paragraphs: [
+            "Completing the Build Infrastructure with Terraform on Google Cloud challenge lab (GSP345) reinforced why repeatable modules beat manual Cloud Console clicks. Every ad-hoc firewall rule or VM edit introduces drift that security teams cannot reliably audit.",
+            "Structuring compute, storage, and networking resources into clean Terraform modules—paired with a remote Cloud Storage backend—establishes a single auditable source of truth. In production workflows, running terraform fmt, terraform validate, and Checkov CIS GCP policies inside GitHub Actions catches misconfigurations before they reach cloud APIs.",
+            "Repository hygiene matters just as much: keeping terraform.tfstate, sensitive .tfvars, and static JSON keys out of Git via strict .gitignore rules and pre-commit secret scanning prevents credential leaks at the source."
+          ]
+        },
+        {
+          id: "iam-sso-boundaries",
+          date: "Nov 2026",
+          readTime: "3 min",
+          title: "Least-Privilege IAM & SSO Trust Boundaries on Google Cloud",
+          excerpt: "Eliminating basic Owner/Editor roles with scoped custom roles, IAM Conditions, and keyless Workload Identity Federation.",
+          callout: "Assume every identity can be compromised: narrow permissions by default, bind temporary elevation to conditions, and eliminate static JSON keys.",
+          paragraphs: [
+            "Studying cloud access controls, SSO federation, and risk management highlights a recurring root cause behind cloud incidents: overly broad roles paired with long-lived static credentials.",
+            "Enforcing least privilege on Google Cloud starts with three disciplined habits: federating human identities through SSO, replacing primitive Owner/Editor roles with minimal predefined or custom roles, and attaching IAM Conditions whenever elevated access must be time-bound.",
+            "For workloads running on GKE or CI runners like GitHub Actions, Workload Identity Federation removes the operational risk of downloading, storing, and rotating JSON service account keys altogether."
+          ]
+        },
+        {
+          id: "gsp321-multi-vpc-notes",
+          date: "Nov 2026",
+          readTime: "4 min",
+          title: "Dual-NIC Bastion Isolation & GKE Hardening (GSP321 Field Notes)",
+          excerpt: "Separating application and management planes across custom-mode VPCs and delegating observability strictly via monitoring.editor.",
+          callout: "Default auto-mode VPCs flatten trust boundaries. Custom-mode VPCs with non-overlapping CIDRs and dedicated management planes contain lateral movement.",
+          paragraphs: [
+            "In the Develop Your Google Cloud Network challenge lab (GSP321), separating development (griffin-dev-vpc) and production (griffin-prod-vpc) into custom-mode VPCs with distinct /20 application and management subnets demonstrates defense-in-depth networking.",
+            "Attaching a dual-NIC bastion strictly across the management subnets (griffin-dev-mgmt and griffin-prod-mgmt) keeps administrative SSH traffic off the application tier. In hardened production deployments, pairing that pattern with Identity-Aware Proxy (IAP) eliminates public SSH exposure entirely.",
+            "Finally, scoping operational access solely with roles/monitoring.editor lets teams inspect uptime checks and alerts without inheriting compute or IAM modification rights."
+          ]
+        }
+      ],
+
+      experience: [
+        {
+          period: "2022 — Present",
+          role: "Security Engineer - Threat Detection",
+          org: "Google Operations Center",
+          bullets: [
+            "Rebuilt verified Google Cloud Challenge Labs (GSP345 Terraform 100/100, GSP321 Networking) into sanitized, reproducible GitHub IaC repositories.",
+            "Integrated automated DevSecOps policy checks (Checkov, Trivy, Gitleaks) via GitHub Actions across Terraform and container templates.",
+            "Authored concise architecture notes covering least-privilege IAM, SSO trust boundaries, and custom-mode multi-VPC isolation."
+          ]
+        },
+        {
+          period: "20XX — Present",
+          role: "Current Role Title (Update in PORTFOLIO)",
+          org: "Company / Organization",
+          bullets: [
+            "Replace with 2–3 high-signal bullets emphasizing operational rigor, access governance, troubleshooting, or automation.",
+            "Highlight security-relevant habits: change control discipline, root-cause documentation, and production reliability."
+          ]
+        }
+      ],
+
+      capabilities: [
+        {
+          pillar: "Identity & Access",
+          items: ["GCP Cloud IAM", "Custom Roles", "IAM Conditions", "SSO Federation", "Workload Identity", "Zero Trust"]
+        },
+        {
+          pillar: "Cloud Network & Perimeter",
+          items: ["Custom-Mode VPC", "VPC Firewalls", "Identity-Aware Proxy", "Bastion Isolation", "Cloud Monitoring", "Segmentation"]
+        },
+        {
+          pillar: "IaC & DevSecOps",
+          items: ["Terraform HCL", "GCS Remote State", "GitHub Actions", "Checkov", "Gitleaks", "gcloud CLI"]
+        },
+        {
+          pillar: "Workloads & Data Protection",
+          items: ["GKE Hardening", "Distroless Containers", "Trivy CVE Scans", "Cloud KMS / CMEK", "Python", "Bash"]
+        }
+      ],
+
+      credentials: [
+        {
+          code: "TF",
+          title: "Build Infrastructure with Terraform on Google Cloud",
+          issuer: "Google Cloud Skills · Skill Badge (GSP345 · 100/100)",
+          status: "Verified",
+          verified: true,
+          url: "https://www.skills.google/public_profiles/a9518546-af4d-48b3-900f-64afda9d132c"
+        },
+        {
+          code: "NET",
+          title: "Develop Your Google Cloud Network",
+          issuer: "Google Cloud Skills · Skill Badge (GSP321)",
+          status: "Verified",
+          verified: true,
+          url: "https://www.skills.google/public_profiles/a9518546-af4d-48b3-900f-64afda9d132c"
+        },
+        {
+          code: "SEC",
+          title: "Google Cloud Cybersecurity Certificate",
+          issuer: "Google Cloud Skills · Course 3 (Access Controls & Risk)",
+          status: "In Progress",
+          verified: false,
+          url: "https://www.skills.google/public_profiles/a9518546-af4d-48b3-900f-64afda9d132c"
+        },
+        {
+          code: "EH",
+          title: "Cisco: Ethical Hacking",
+          issuer: "Cisco Networking Academy",
+          status: "In Progress",
+          verified: false,
+          url: "https://www.netacad.com/"
+        },
+        {
+          code: "GCP",
+          title: "Associate Cloud Engineer → Professional Cloud Security Engineer",
+          issuer: "Google Cloud Certification Track",
+          status: "Target Track",
+          verified: false,
+          url: "https://cloud.google.com/learn/certification/cloud-security-engineer"
+        }
+      ]
+    };
+
+    /* =========================================================================
+       ICONS & ARCHITECTURAL SVG DIAGRAMS (MINERAL JADE ACCENT)
+       ========================================================================= */
+    function Icon({ name, size = 15 }) {
+      const p = {
+        width: String(size),
+        height: String(size),
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "1.75",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        "aria-hidden": "true"
+      };
+      if (name === "sun") return h("svg", p, h("circle", { cx: "12", cy: "12", r: "4" }), h("path", { d: "M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" }));
+      if (name === "moon") return h("svg", p, h("path", { d: "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" }));
+      if (name === "search") return h("svg", p, h("circle", { cx: "11", cy: "11", r: "7" }), h("path", { d: "m21 21-4.3-4.3" }));
+      if (name === "close") return h("svg", p, h("path", { d: "M18 6 6 18M6 6l12 12" }));
+      if (name === "menu") return h("svg", p, h("path", { d: "M4 7h16M4 12h16M4 17h16" }));
+      if (name === "copy") return h("svg", p, h("rect", { x: "9", y: "9", width: "13", height: "13", rx: "2" }), h("path", { d: "M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" }));
+      if (name === "print") return h("svg", p, h("path", { d: "M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" }), h("rect", { x: "6", y: "14", width: "12", height: "8" }));
+      if (name === "repo") return h("svg", p, h("path", { d: "M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" }));
+      if (name === "refresh") return h("svg", p, h("path", { d: "M21 12a9 9 0 1 1-2.64-6.36" }), h("polyline", { points: "21 3 21 9 15 9" }));
+      return null;
+    }
+
+    /* =========================================================================
+       LIVE GITHUB REPOSITORIES HOOK (With Offline / Sandbox Graceful Fallback)
+       ========================================================================= */
+    function formatRepoDate(iso) {
+      if (!iso) return "";
+      try {
+        const d = new Date(iso);
+        return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+      } catch (_) {
+        return "";
+      }
+    }
+
+    function useGitHubRepos(username, fallbackRepos, enabled, maxRepos) {
+      const [state, setState] = React.useState({
+        repos: fallbackRepos,
+        status: enabled ? "loading" : "fallback",
+        liveCount: 0
+      });
+      const [nonce, setNonce] = React.useState(0);
+
+      React.useEffect(() => {
+        if (!enabled || !username) {
+          setState({ repos: fallbackRepos, status: "fallback", liveCount: 0 });
+          return;
+        }
+
+        const cacheKey = `aj-gh-repos:${username}`;
+        if (nonce === 0) {
+          try {
+            const cached = JSON.parse(sessionStorage.getItem(cacheKey) || "null");
+            if (cached && Date.now() - cached.ts < 300000 && Array.isArray(cached.repos) && cached.repos.length > 0) {
+              setState({ repos: cached.repos, status: "live", liveCount: cached.repos.length });
+              return;
+            }
+          } catch (_) {}
+        }
+
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 4500);
+        setState(prev => ({ ...prev, status: "loading" }));
+
+        fetch(`https://api.github.com/users/${encodeURIComponent(username)}/repos?sort=updated&per_page=20&type=owner`, {
+          headers: { Accept: "application/vnd.github+json" },
+          signal: controller.signal
+        })
+          .then(res => {
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.json();
+          })
+          .then(raw => {
+            clearTimeout(timer);
+            if (!Array.isArray(raw)) throw new Error("Unexpected response");
+            const mapped = raw
+              .filter(r => !r.archived && r.name.toLowerCase() !== `${username.toLowerCase()}.github.io`)
+              .slice(0, maxRepos)
+              .map(r => ({
+                name: r.name,
+                description: r.description || "Cloud security engineering repository.",
+                language: r.language || "Docs",
+                topics: Array.isArray(r.topics) ? r.topics : [],
+                url: r.html_url,
+                cloneUrl: r.clone_url,
+                stars: r.stargazers_count || 0,
+                forks: r.forks_count || 0,
+                updated: formatRepoDate(r.pushed_at || r.updated_at),
+                featured: r.name === PORTFOLIO.projectsHub.name
+              }));
+
+            if (mapped.length > 0) {
+              try { sessionStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), repos: mapped })); } catch (_) {}
+              setState({ repos: mapped, status: "live", liveCount: mapped.length });
+            } else {
+              setState({ repos: fallbackRepos, status: "empty", liveCount: 0 });
+            }
+          })
+          .catch(() => {
+            clearTimeout(timer);
+            setState({ repos: fallbackRepos, status: "fallback", liveCount: 0 });
+          });
+
+        return () => {
+          clearTimeout(timer);
+          controller.abort();
+        };
+      }, [username, enabled, maxRepos, nonce]);
+
+      return {
+        ...state,
+        refresh: () => setNonce(n => n + 1)
+      };
+    }
+
+    function ArchitectureDiagram({ type }) {
+      const box = { rx: "6", fill: "var(--surface)", stroke: "var(--border-strong)", strokeWidth: "1.2" };
+      const keyBox = { rx: "6", fill: "var(--jade-tint)", stroke: "var(--jade)", strokeWidth: "1.5" };
+      const titleT = { fill: "var(--ink)", fontSize: "10.5", fontWeight: "600", fontFamily: "var(--font-mono)" };
+      const jadeT = { fill: "var(--jade)", fontSize: "10.5", fontWeight: "600", fontFamily: "var(--font-mono)" };
+      const subT = { fill: "var(--ink-muted)", fontSize: "9", fontFamily: "var(--font-mono)" };
+
+      if (type === "multi-vpc") {
+        return h("svg", { viewBox: "0 0 580 212", width: "100%", role: "img", "aria-label": "Multi-VPC Segmentation Topology" },
+          h("rect", { x: "10", y: "12", width: "248", height: "188", rx: "7", fill: "none", stroke: "var(--border-strong)", strokeDasharray: "4 3", strokeWidth: "1.2" }),
+          h("text", { x: "22", y: "30", ...titleT }, "griffin-dev-vpc (custom)"),
+          h("rect", { x: "22", y: "42", width: "224", height: "64", ...box }),
+          h("text", { x: "32", y: "62", ...titleT }, "griffin-dev-wp  192.168.16.0/20"),
+          h("text", { x: "32", y: "79", ...subT }, "GKE Nodes + Cloud SQL Auth Proxy"),
+          h("text", { x: "32", y: "94", ...subT }, "-> griffin-dev-db (Private Path)"),
+          h("rect", { x: "22", y: "120", width: "224", height: "66", ...box }),
+          h("text", { x: "32", y: "142", ...titleT }, "griffin-dev-mgmt 192.168.32.0/20"),
+          h("text", { x: "32", y: "159", ...subT }, "NIC 0 · SSH Management Plane"),
+
+          h("rect", { x: "322", y: "12", width: "248", height: "188", rx: "7", fill: "none", stroke: "var(--border-strong)", strokeDasharray: "4 3", strokeWidth: "1.2" }),
+          h("text", { x: "334", y: "30", ...titleT }, "griffin-prod-vpc (custom)"),
+          h("rect", { x: "334", y: "42", width: "224", height: "64", ...box }),
+          h("text", { x: "344", y: "62", ...titleT }, "griffin-prod-wp 192.168.48.0/20"),
+          h("text", { x: "344", y: "79", ...subT }, "Isolated Production Tier"),
+          h("rect", { x: "334", y: "120", width: "224", height: "66", ...box }),
+          h("text", { x: "344", y: "142", ...titleT }, "griffin-prod-mgmt 192.168.64.0/20"),
+          h("text", { x: "344", y: "159", ...subT }, "NIC 1 · Prod Admin Plane"),
+
+          h("line", { x1: "246", y1: "153", x2: "334", y2: "153", stroke: "var(--jade)", strokeWidth: "1.6" }),
+          h("rect", { x: "244", y: "136", width: "92", height: "34", ...keyBox }),
+          h("text", { x: "290", y: "152", textAnchor: "middle", ...jadeT }, "Bastion VM"),
+          h("text", { x: "290", y: "164", textAnchor: "middle", ...subT }, "Dual-NIC SSH")
+        );
+      }
+
+      const stages =
+        type === "terraform-ci" ? [
+          ["01 · Terraform", "Modular HCL", false],
+          ["02 · Validate", "fmt + plan", false],
+          ["03 · Checkov", "CIS GCP Gate", true],
+          ["04 · GCS State", "IAP-Only VPC", false]
+        ] : type === "container-ci" ? [
+          ["01 · Builder", "Multi-Stage Go", false],
+          ["02 · Distroless", "Non-Root UID", false],
+          ["03 · Trivy CI", "Block Crit CVE", true],
+          ["04 · GKE Pod", "Read-Only FS", false]
+        ] : type === "kms-flow" ? [
+          ["01 · Classify", "Restricted PII", false],
+          ["02 · Cloud KMS", "90-Day CMEK", true],
+          ["03 · Vault", "No Public ACL", false]
+        ] : [
+          ["01 · Identity", "SSO / Workload", false],
+          ["02 · Policy", "Custom + Cond.", true],
+          ["03 · CI Audit", "0 Basic Roles", false]
+        ];
+
+      const n = stages.length;
+      const gap = 16;
+      const w = Math.floor((560 - gap * (n - 1)) / n);
+      return h("svg", { viewBox: "0 0 580 102", width: "100%", role: "img", "aria-label": "Security Control Pipeline" },
+        ...stages.map(([title, sub, highlight], i) => {
+          const x = 10 + i * (w + gap);
+          return h(React.Fragment, { key: title },
+            h("rect", { x: String(x), y: "18", width: String(w), height: "66", ...(highlight ? keyBox : box) }),
+            h("text", { x: String(x + 11), y: "45", ...(highlight ? jadeT : titleT) }, title),
+            h("text", { x: String(x + 11), y: "65", ...subT }, sub),
+            i < n - 1 ? h("line", { x1: String(x + w), y1: "51", x2: String(x + w + gap), y2: "51", stroke: "var(--jade)", strokeWidth: "1.4" }) : null
+          );
+        })
+      );
+    }
+
+    /* =========================================================================
+       DRAWERS — CASE STUDY INSPECTOR & SERIF NOTE READER
+       ========================================================================= */
+    function CaseStudyDrawer({ project, onClose, onCopy }) {
+      const [tab, setTab] = React.useState("brief");
+      React.useEffect(() => { setTab("brief"); }, [project ? project.id : null]);
+      React.useEffect(() => {
+        if (!project) return;
+        const onKey = (e) => { if (e.key === "Escape") onClose(); };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+      }, [project, onClose]);
+
+      if (!project) return null;
+
+      return h("div", { className: "backdrop", role: "dialog", "aria-modal": "true", onClick: (e) => { if (e.target === e.currentTarget) onClose(); } },
+        h("div", { className: "drawer" },
+          h("div", { className: "drawer-head" },
+            h("div", null,
+              h("div", { className: "drawer-kicker" }, `${project.category} · ${project.repoName}`),
+              h("h3", { className: "drawer-title" }, project.title)
+            ),
+            h("button", { className: "icon-btn", onClick: onClose, "aria-label": "Close" }, h(Icon, { name: "close", size: 15 }))
+          ),
+
+          h("div", { className: "drawer-tabs", role: "tablist" },
+            ...[
+              ["brief", "Security Brief"],
+              ["topology", "Architecture"],
+              ["artifact", project.artifactFilename]
+            ].map(([id, label]) =>
+              h("button", {
+                key: id,
+                role: "tab",
+                "aria-selected": String(tab === id),
+                className: `drawer-tab ${tab === id ? "active" : ""}`,
+                onClick: () => setTab(id)
+              }, label)
+            )
+          ),
+
+          h("div", { className: "drawer-body" },
+            tab === "brief" ? h(React.Fragment, null,
+              h("div", { className: "drawer-section" },
+                h("h4", null, "Risk & Problem"),
+                h("p", null, project.problem)
+              ),
+              h("div", { className: "drawer-section" },
+                h("h4", null, "Controls Implemented"),
+                h("ul", { className: "bullet-list" },
+                  ...project.controls.map((c, i) => h("li", { key: String(i) }, c))
+                )
+              ),
+              h("div", { className: "drawer-section" },
+                h("h4", null, "Verification Evidence"),
+                h("p", null, project.verification)
+              ),
+              h("div", { className: "drawer-section" },
+                h("h4", null, "Technologies"),
+                h("div", { className: "chips" }, ...project.stack.map(t => h("span", { key: t, className: "chip" }, t)))
+              )
+            ) : null,
+
+            tab === "topology" ? h("div", { className: "drawer-section" },
+              h("h4", null, "Control Boundary Topology"),
+              h("div", { className: "diagram-frame" }, h(ArchitectureDiagram, { type: project.diagramType }))
+            ) : null,
+
+            tab === "artifact" ? h("div", { className: "drawer-section" },
+              h("h4", null, "Declarative IaC / Policy Snippet"),
+              h("div", { className: "code-frame" },
+                h("div", { className: "code-bar" },
+                  h("span", null, project.artifactFilename),
+                  h("button", { className: "code-copy", onClick: () => onCopy(project.artifactCode, `Copied ${project.artifactFilename}`) }, "Copy")
+                ),
+                h("pre", { className: "code-pre" }, project.artifactCode)
+              )
+            ) : null
+          ),
+
+          h("div", { className: "drawer-foot" },
+            h("span", { style: { fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--ink-muted)" } }, "Press ESC to close"),
+            h("a", { href: project.repoUrl, target: "_blank", rel: "noopener noreferrer", className: "btn btn-primary" }, "Open Repository ↗")
+          )
+        )
+      );
+    }
+
+    function NoteReaderDrawer({ note, onClose }) {
+      React.useEffect(() => {
+        if (!note) return;
+        const onKey = (e) => { if (e.key === "Escape") onClose(); };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+      }, [note, onClose]);
+
+      if (!note) return null;
+
+      return h("div", { className: "backdrop", role: "dialog", "aria-modal": "true", onClick: (e) => { if (e.target === e.currentTarget) onClose(); } },
+        h("div", { className: "drawer" },
+          h("div", { className: "drawer-head" },
+            h("div", null,
+              h("div", { className: "drawer-kicker" }, `Field Note · ${note.date} · ${note.readTime} read`),
+              h("h3", { className: "drawer-title" }, note.title)
+            ),
+            h("button", { className: "icon-btn", onClick: onClose, "aria-label": "Close" }, h(Icon, { name: "close", size: 15 }))
+          ),
+          h("div", { className: "drawer-body" },
+            h("div", { className: "serif-callout" }, note.callout),
+            h("article", { className: "serif-article" },
+              ...note.paragraphs.map((p, i) => h("p", { key: String(i) }, p))
+            )
+          ),
+          h("div", { className: "drawer-foot" },
+            h("span", { style: { fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--ink-muted)" } }, "Reading mode"),
+            h("button", { className: "btn btn-secondary", onClick: onClose }, "Close")
+          )
+        )
+      );
+    }
+
+    /* =========================================================================
+       QUICK JUMP COMMAND PALETTE (⌘K / Ctrl+K)
+       ========================================================================= */
+    function QuickJump({ open, onClose, repos, onSelectProject, onSelectNote, onToggleTheme, onCopyEmail }) {
+      const [query, setQuery] = React.useState("");
+      const inputRef = React.useRef(null);
+
+      React.useEffect(() => {
+        if (open) {
+          setQuery("");
+          setTimeout(() => { if (inputRef.current) inputRef.current.focus(); }, 10);
+        }
+      }, [open]);
+
+      const q = query.trim().toLowerCase();
+
+      const groups = React.useMemo(() => {
+        const jump = [
+          { id: "sec-work", label: "Work & Security Blueprints", kind: "Section", run: () => { window.location.hash = "#work"; onClose(); } },
+          { id: "sec-repos", label: "Dedicated Projects & GitHub Repos", kind: "Section", run: () => { window.location.hash = "#repos"; onClose(); } },
+          { id: "sec-notes", label: "Engineering Field Notes", kind: "Section", run: () => { window.location.hash = "#notes"; onClose(); } },
+          { id: "sec-background", label: "Background & Capabilities", kind: "Section", run: () => { window.location.hash = "#background"; onClose(); } },
+          { id: "sec-credentials", label: "Credentials & Verification", kind: "Section", run: () => { window.location.hash = "#credentials"; onClose(); } }
+        ];
+        const work = PORTFOLIO.projects.map(p => ({
+          id: p.id, label: p.title, kind: p.category, run: () => { onSelectProject(p); onClose(); }
+        }));
+        const repoItems = (repos || []).map(r => ({
+          id: `repo-${r.name}`,
+          label: `${PORTFOLIO.githubHandle}/${r.name}`,
+          kind: r.language || "Repo",
+          run: () => { window.open(r.url, "_blank", "noopener,noreferrer"); onClose(); }
+        }));
+        const notes = PORTFOLIO.notes.map(n => ({
+          id: n.id, label: n.title, kind: "Note", run: () => { onSelectNote(n); onClose(); }
+        }));
+        const actions = [
+          { id: "act-theme", label: "Switch Light / Dark theme", kind: "Action", run: () => { onToggleTheme(); onClose(); } },
+          { id: "act-copy", label: `Copy email (${PORTFOLIO.email})`, kind: "Action", run: () => { onCopyEmail(); onClose(); } },
+          { id: "act-print", label: "Print / Save Resume PDF", kind: "Action", run: () => { onClose(); setTimeout(() => window.print(), 80); } }
+        ];
+
+        const filter = (list) => !q ? list : list.filter(i => i.label.toLowerCase().includes(q) || i.kind.toLowerCase().includes(q));
+        return [
+          { title: "Case Studies", items: filter(work) },
+          { title: "Repositories", items: filter(repoItems) },
+          { title: "Field Notes", items: filter(notes) },
+          { title: "Navigate", items: filter(jump) },
+          { title: "Actions", items: filter(actions) }
+        ].filter(g => g.items.length > 0);
+      }, [q, repos, onClose, onSelectProject, onSelectNote, onToggleTheme, onCopyEmail]);
+
+      if (!open) return null;
+
+      return h("div", { className: "modal-backdrop", onClick: (e) => { if (e.target === e.currentTarget) onClose(); } },
+        h("div", { className: "palette", role: "dialog", "aria-modal": "true", "aria-label": "Quick jump" },
+          h("div", { className: "palette-input-row" },
+            h(Icon, { name: "search", size: 15 }),
+            h("input", {
+              ref: inputRef,
+              className: "palette-input",
+              type: "text",
+              placeholder: "Search case studies, notes, or actions...",
+              value: query,
+              onChange: (e) => setQuery(e.target.value),
+              onKeyDown: (e) => { if (e.key === "Escape") onClose(); }
+            }),
+            h("span", { className: "kbd" }, "ESC")
+          ),
+          h("div", { className: "palette-list" },
+            groups.length === 0
+              ? h("div", { style: { padding: "14px 10px", fontSize: "0.84rem", color: "var(--ink-muted)" } }, "No matching items.")
+              : groups.map(g =>
+                  h(React.Fragment, { key: g.title },
+                    h("div", { className: "palette-group" }, g.title),
+                    ...g.items.map(item =>
+                      h("button", { key: item.id, className: "palette-item", onClick: item.run },
+                        h("span", null, item.label),
+                        h("span", { className: "palette-kind" }, item.kind)
+                      )
+                    )
+                  )
+                )
+          )
+        )
+      );
+    }
+
+    /* =========================================================================
+       ROOT APPLICATION
+       ========================================================================= */
+    const NAV_ITEMS = [
+      { id: "work", label: "Work" },
+      { id: "repos", label: "Repos" },
+      { id: "notes", label: "Notes" },
+      { id: "background", label: "Background" },
+      { id: "credentials", label: "Credentials" }
+    ];
+
+    function App() {
+      const [theme, setTheme] = React.useState(() => {
+        try { return localStorage.getItem("aj-portfolio-theme") === "dark" ? "dark" : "light"; }
+        catch (_) { return "light"; }
+      });
+      const [activeSection, setActiveSection] = React.useState("work");
+      const [category, setCategory] = React.useState("All");
+      const [repoLang, setRepoLang] = React.useState("All");
+      const [openExp, setOpenExp] = React.useState({ 0: true });
+      const [selectedProject, setSelectedProject] = React.useState(null);
+      const [selectedNote, setSelectedNote] = React.useState(null);
+      const [paletteOpen, setPaletteOpen] = React.useState(false);
+      const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
+      const [copiedEmail, setCopiedEmail] = React.useState(false);
+      const [toastMsg, setToastMsg] = React.useState("");
+
+      const gh = useGitHubRepos(
+        PORTFOLIO.githubHandle,
+        PORTFOLIO.fallbackRepos,
+        PORTFOLIO.githubSync.enabled,
+        PORTFOLIO.githubSync.maxRepos
+      );
+
+      const toastTimer = React.useRef(null);
+
+      function showToast(msg) {
+        setToastMsg(msg);
+        if (toastTimer.current) clearTimeout(toastTimer.current);
+        toastTimer.current = setTimeout(() => setToastMsg(""), 2200);
+      }
+
+      function copyText(text, label) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => showToast(label)).catch(() => showToast(text));
+        } else {
+          showToast(text);
+        }
+      }
+
+      function copyEmail() {
+        copyText(PORTFOLIO.email, "Email copied to clipboard");
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 1800);
+      }
+
+      React.useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+        try { localStorage.setItem("aj-portfolio-theme", theme); } catch (_) {}
+      }, [theme]);
+
+      React.useEffect(() => {
+        const onKey = (e) => {
+          if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+            e.preventDefault();
+            setPaletteOpen(prev => !prev);
+          }
+        };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+      }, []);
+
+      React.useEffect(() => {
+        const onScroll = () => {
+          let current = "work";
+          for (const item of NAV_ITEMS) {
+            const el = document.getElementById(item.id);
+            if (el && window.scrollY >= el.offsetTop - 180) current = item.id;
+          }
+          setActiveSection(current);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+      }, []);
+
+      const categories = React.useMemo(
+        () => ["All", ...Array.from(new Set(PORTFOLIO.projects.map(p => p.category)))],
+        []
+      );
+
+      const filteredProjects = React.useMemo(
+        () => category === "All" ? PORTFOLIO.projects : PORTFOLIO.projects.filter(p => p.category === category),
+        [category]
+      );
+
+      const repoLanguages = React.useMemo(
+        () => ["All", ...Array.from(new Set(gh.repos.map(r => r.language).filter(Boolean)))],
+        [gh.repos]
+      );
+
+      React.useEffect(() => {
+        if (repoLang !== "All" && !repoLanguages.includes(repoLang)) setRepoLang("All");
+      }, [repoLang, repoLanguages]);
+
+      const filteredRepos = React.useMemo(
+        () => repoLang === "All" ? gh.repos : gh.repos.filter(r => r.language === repoLang),
+        [gh.repos, repoLang]
+      );
+
+      const syncLabel =
+        gh.status === "live" ? `Live · ${gh.liveCount} public repos`
+        : gh.status === "loading" ? "Syncing GitHub…"
+        : gh.status === "empty" ? "0 public repos yet · Starter index"
+        : "Starter index · Live sync on GitHub Pages";
+
+      const toggleTheme = () => setTheme(t => (t === "light" ? "dark" : "light"));
+
+      return h(React.Fragment, null,
+        // Sticky Minimal Top Bar
+        h("header", { className: "topbar" },
+          h("div", { className: "topbar-inner" },
+            h("a", { href: "#top", className: "brand" },
+              h("span", { className: "brand-mark" }, PORTFOLIO.monogram),
+              h("span", null, PORTFOLIO.name)
+            ),
+
+            h("nav", { className: "nav-links", "aria-label": "Primary navigation" },
+              ...NAV_ITEMS.map(item =>
+                h("a", {
+                  key: item.id,
+                  href: `#${item.id}`,
+                  className: `nav-item ${activeSection === item.id ? "active" : ""}`
+                }, item.label)
+              )
+            ),
+
+            h("div", { className: "topbar-controls" },
+              h("button", { className: "cmd-btn", onClick: () => setPaletteOpen(true), title: "Quick jump (Ctrl/Cmd + K)" },
+                h(Icon, { name: "search", size: 13 }),
+                h("span", null, "Search"),
+                h("span", { className: "kbd" }, "⌘K")
+              ),
+              h("button", { className: "icon-btn", onClick: toggleTheme, "aria-label": "Toggle color theme", title: "Toggle theme" },
+                h(Icon, { name: theme === "light" ? "moon" : "sun", size: 15 })
+              ),
+              h("button", {
+                className: "icon-btn mobile-toggle",
+                onClick: () => setMobileNavOpen(o => !o),
+                "aria-label": "Toggle menu",
+                "aria-expanded": String(mobileNavOpen)
+              }, h(Icon, { name: mobileNavOpen ? "close" : "menu", size: 15 }))
+            )
+          ),
+
+          h("div", { className: `mobile-nav-bar ${mobileNavOpen ? "open" : ""}` },
+            ...NAV_ITEMS.map(item =>
+              h("a", {
+                key: item.id,
+                href: `#${item.id}`,
+                className: `nav-item ${activeSection === item.id ? "active" : ""}`,
+                onClick: () => setMobileNavOpen(false)
+              }, item.label)
+            ),
+            h("button", {
+              className: "nav-item",
+              onClick: () => { setMobileNavOpen(false); setPaletteOpen(true); }
+            }, "Search")
+          )
+        ),
+
+        // Centered Editorial Container
+        h("main", { id: "top", className: "container" },
+          // HERO
+          h("section", { className: "hero reveal" },
+            h("div", { className: "availability-pill" },
+              h("span", { className: "jade-dot" }),
+              PORTFOLIO.availability
+            ),
+
+            h("h1", { className: "hero-title" },
+              "Designing verifiable ",
+              h("span", { className: "accent-word" }, "cloud defenses"),
+              " as code."
+            ),
+
+            h("p", { className: "hero-lead" },
+              "I'm ", h("strong", null, PORTFOLIO.name), ", a Cloud Security Engineer focused on ",
+              h("strong", null, "Google Cloud IAM, Zero-Trust VPC segmentation, Terraform IaC, and Kubernetes hardening"),
+              ". Every completed lab is rebuilt into a clean, auditable GitHub blueprint with automated security checks."
+            ),
+
+            h("div", { className: "hero-actions" },
+              h("a", { href: "#work", className: "btn btn-primary" }, "Inspect Blueprints"),
+              h("button", { className: "btn btn-secondary", onClick: () => window.print() },
+                h(Icon, { name: "print", size: 14 }),
+                "Resume PDF"
+              ),
+              h("button", { className: "btn btn-secondary", onClick: copyEmail },
+                h(Icon, { name: "copy", size: 14 }),
+                copiedEmail ? "Copied" : "Copy Email"
+              ),
+              h("a", { href: PORTFOLIO.githubUrl, target: "_blank", rel: "noopener noreferrer", className: "btn btn-ghost" }, "GitHub ↗"),
+              h("a", { href: PORTFOLIO.skillsProfileUrl, target: "_blank", rel: "noopener noreferrer", className: "btn btn-ghost" }, "Google Skills ↗"),
+              h("a", { href: PORTFOLIO.linkedinUrl, target: "_blank", rel: "noopener noreferrer", className: "btn btn-ghost" }, "LinkedIn ↗")
+            ),
+
+            // Posture Metadata Strip
+            h("div", { className: "posture-strip reveal d1" },
+              ...PORTFOLIO.posture.map(cell =>
+                h("div", { key: cell.label, className: "posture-cell" },
+                  h("span", { className: "posture-label" }, cell.label),
+                  cell.href
+                    ? h("a", { href: cell.href, target: "_blank", rel: "noopener noreferrer", className: "posture-link" }, `${cell.value} ↗`)
+                    : h("span", { className: "posture-value" }, cell.value)
+                )
+              )
+            )
+          ),
+
+          // WORK & SECURITY BLUEPRINTS
+          h("section", { id: "work", className: "section reveal d2" },
+            h("div", { className: "section-head" },
+              h("div", null,
+                h("div", { className: "section-eyebrow" }, "Selected Work"),
+                h("h2", { className: "section-title" }, "Security Blueprints & Verified Labs")
+              ),
+              h("div", { className: "section-meta" },
+                h("a", { href: PORTFOLIO.githubUrl, target: "_blank", rel: "noopener noreferrer" }, "All repositories ↗")
+              )
+            ),
+
+            h("div", { className: "filter-bar" },
+              h("div", { className: "filter-pills", role: "tablist", "aria-label": "Filter blueprints by domain" },
+                ...categories.map(cat =>
+                  h("button", {
+                    key: cat,
+                    role: "tab",
+                    "aria-selected": String(category === cat),
+                    className: `filter-pill ${category === cat ? "active" : ""}`,
+                    onClick: () => setCategory(cat)
+                  }, cat)
+                )
+              ),
+              h("span", { className: "filter-count" }, `${filteredProjects.length} ${filteredProjects.length === 1 ? "blueprint" : "blueprints"}`)
+            ),
+
+            h("div", { className: "work-grid" },
+              ...filteredProjects.map(project =>
+                h("button", {
+                  key: project.id,
+                  className: `work-card ${project.featured && category === "All" ? "featured" : ""}`,
+                  onClick: () => setSelectedProject(project)
+                },
+                  h("div", null,
+                    h("div", { className: "work-top", style: { marginBottom: "12px" } },
+                      h("span", { className: "work-domain" }, project.category),
+                      h("span", { className: `status-chip ${project.verified ? "verified" : ""}` },
+                        project.verified ? h("span", { className: "jade-dot" }) : null,
+                        project.status
+                      )
+                    ),
+                    h("h3", { className: "work-title" }, project.title),
+                    h("p", { className: "work-summary" }, project.summary)
+                  ),
+                  h("div", { className: "work-foot" },
+                    h("div", { className: "chips" },
+                      ...project.stack.slice(0, 4).map(t => h("span", { key: t, className: "chip" }, t))
+                    ),
+                    h("span", { className: "inspect-cue" }, "Case study →")
+                  )
+                )
+              )
+            )
+          ),
+
+          // DEDICATED PROJECTS REPOSITORY & LIVE GITHUB LEDGER
+          h("section", { id: "repos", className: "section reveal d2" },
+            h("div", { className: "section-head" },
+              h("div", null,
+                h("div", { className: "section-eyebrow" }, "Open Source"),
+                h("h2", { className: "section-title" }, "Dedicated Projects Repository")
+              ),
+              h("div", { className: "sync-bar" },
+                h("span", { className: `sync-pill ${gh.status === "live" ? "live" : ""}` },
+                  gh.status === "live" ? h("span", { className: "jade-dot" }) : null,
+                  syncLabel
+                ),
+                h("button", {
+                  className: "mini-action-btn",
+                  onClick: () => { gh.refresh(); showToast("Checking GitHub API…"); },
+                  title: "Refresh live repositories from GitHub API",
+                  "aria-label": "Refresh repositories"
+                }, h(Icon, { name: "refresh", size: 12 }), "Sync")
+              )
+            ),
+
+            // Dedicated Projects Hub Monorepo Card
+            h("div", { className: "repo-hub" },
+              h("div", { className: "repo-hub-top" },
+                h("div", null,
+                  h("a", {
+                    href: PORTFOLIO.projectsHub.url,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    className: "repo-hub-name"
+                  },
+                    h(Icon, { name: "repo", size: 16 }),
+                    PORTFOLIO.projectsHub.fullName
+                  ),
+                  h("p", { className: "repo-hub-desc" }, PORTFOLIO.projectsHub.description)
+                ),
+                h("span", { className: "status-chip verified" },
+                  h("span", { className: "jade-dot" }),
+                  "Primary Hub Repo"
+                )
+              ),
+
+              h("div", { className: "repo-tree" },
+                ...PORTFOLIO.projectsHub.structure.map(item =>
+                  h("div", { key: item.dir, className: "repo-tree-cell" },
+                    h("span", { className: "repo-tree-dir" }, item.dir),
+                    h("span", { className: "repo-tree-note" }, item.note)
+                  )
+                )
+              ),
+
+              h("div", { className: "repo-hub-foot" },
+                h("span", { style: { fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--ink-muted)" } },
+                  `git clone ${PORTFOLIO.projectsHub.cloneUrl}`
+                ),
+                h("div", { className: "repo-actions" },
+                  h("button", {
+                    className: "mini-action-btn",
+                    onClick: () => copyText(`git clone ${PORTFOLIO.projectsHub.cloneUrl}`, "Copied git clone command")
+                  }, h(Icon, { name: "copy", size: 12 }), "Clone"),
+                  h("a", {
+                    href: PORTFOLIO.projectsHub.url,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    className: "mini-action-btn"
+                  }, "Open Hub ↗")
+                )
+              )
+            ),
+
+            // Language Filter & Live Repository Ledger
+            h("div", { className: "filter-bar" },
+              h("div", { className: "filter-pills", role: "tablist", "aria-label": "Filter repositories by language" },
+                ...repoLanguages.map(lang =>
+                  h("button", {
+                    key: lang,
+                    role: "tab",
+                    "aria-selected": String(repoLang === lang),
+                    className: `filter-pill ${repoLang === lang ? "active" : ""}`,
+                    onClick: () => setRepoLang(lang)
+                  }, lang)
+                )
+              ),
+              h("a", {
+                href: `${PORTFOLIO.githubUrl}?tab=repositories`,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                className: "filter-count"
+              }, `${filteredRepos.length} ${filteredRepos.length === 1 ? "repository" : "repositories"} · GitHub ↗`)
+            ),
+
+            h("div", { className: "repo-ledger" },
+              ...filteredRepos.map(repo =>
+                h("div", { key: repo.name, className: "repo-row" },
+                  h("div", null,
+                    h("div", { className: "repo-head-line" },
+                      h("a", {
+                        href: repo.url,
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        className: "repo-name-link"
+                      },
+                        h(Icon, { name: "repo", size: 13 }),
+                        repo.name
+                      ),
+                      repo.featured ? h("span", { className: "status-chip verified" }, "Hub") : null
+                    ),
+                    h("p", { className: "repo-desc" }, repo.description),
+                    h("div", { className: "repo-meta-line" },
+                      repo.language ? h("span", { className: "lang-badge" }, h("span", { className: "lang-dot" }), repo.language) : null,
+                      repo.stars > 0 ? h("span", null, `★ ${repo.stars}`) : null,
+                      repo.forks > 0 ? h("span", null, `Forks ${repo.forks}`) : null,
+                      repo.updated ? h("span", null, `Updated ${repo.updated}`) : null,
+                      ...(repo.topics || []).slice(0, 3).map(topic => h("span", { key: topic, className: "chip" }, topic))
+                    )
+                  ),
+                  h("div", { className: "repo-actions" },
+                    h("button", {
+                      className: "mini-action-btn",
+                      onClick: () => copyText(`git clone ${repo.cloneUrl}`, `Copied clone URL for ${repo.name}`)
+                    }, h(Icon, { name: "copy", size: 12 }), "Clone"),
+                    h("a", {
+                      href: repo.url,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      className: "mini-action-btn"
+                    }, "View ↗")
+                  )
+                )
+              )
+            )
+          ),
+
+          // FIELD NOTES
+          h("section", { id: "notes", className: "section reveal d3" },
+            h("div", { className: "section-head" },
+              h("div", null,
+                h("div", { className: "section-eyebrow" }, "Writing"),
+                h("h2", { className: "section-title" }, "Architecture & Field Notes")
+              ),
+              h("span", { className: "section-meta" }, "Select a note to read")
+            ),
+
+            h("div", { className: "notes-ledger" },
+              ...PORTFOLIO.notes.map(note =>
+                h("button", { key: note.id, className: "note-row", onClick: () => setSelectedNote(note) },
+                  h("span", { className: "note-date" }, note.date),
+                  h("div", null,
+                    h("div", { className: "note-title" }, note.title),
+                    h("p", { className: "note-excerpt" }, note.excerpt)
+                  ),
+                  h("span", { className: "note-read" }, `${note.readTime} →`)
+                )
+              )
+            )
+          ),
+
+          // BACKGROUND & CAPABILITIES
+          h("section", { id: "background", className: "section reveal d3" },
+            h("div", { className: "section-head" },
+              h("div", null,
+                h("div", { className: "section-eyebrow" }, "Background"),
+                h("h2", { className: "section-title" }, "Experience & Core Capabilities")
+              ),
+              h("span", { className: "section-meta" }, "Expand roles for details")
+            ),
+
+            h("div", { className: "exp-list" },
+              ...PORTFOLIO.experience.map((item, idx) => {
+                const expanded = !!openExp[idx];
+                return h("div", { key: item.role, className: "exp-card" },
+                  h("button", {
+                    className: "exp-trigger",
+                    onClick: () => setOpenExp(prev => ({ ...prev, [idx]: !prev[idx] })),
+                    "aria-expanded": String(expanded)
+                  },
+                    h("span", { className: "exp-period" }, item.period),
+                    h("div", null,
+                      h("div", { className: "exp-role" }, item.role),
+                      h("div", { className: "exp-org" }, item.org)
+                    ),
+                    h("span", { className: "exp-chevron" }, expanded ? "Hide −" : "Details +")
+                  ),
+                  expanded ? h("div", { className: "exp-panel" },
+                    h("ul", { className: "bullet-list" },
+                      ...item.bullets.map((b, i) => h("li", { key: String(i) }, b))
+                    )
+                  ) : null
+                );
+              })
+            ),
+
+            h("div", { className: "pillars-grid" },
+              ...PORTFOLIO.capabilities.map(group =>
+                h("div", { key: group.pillar, className: "pillar-card" },
+                  h("div", { className: "pillar-title" }, group.pillar),
+                  h("div", { className: "pillar-items" },
+                    ...group.items.map(skill => h("span", { key: skill, className: "pillar-tag" }, skill))
+                  )
+                )
+              )
+            )
+          ),
+
+          // CREDENTIALS LEDGER
+          h("section", { id: "credentials", className: "section reveal d4" },
+            h("div", { className: "section-head" },
+              h("div", null,
+                h("div", { className: "section-eyebrow" }, "Credentials"),
+                h("h2", { className: "section-title" }, "Verified Badges & Certification Track")
+              ),
+              h("div", { className: "section-meta" },
+                h("a", { href: PORTFOLIO.skillsProfileUrl, target: "_blank", rel: "noopener noreferrer" }, "Public Google Skills profile ↗")
+              )
+            ),
+
+            h("div", { className: "cred-ledger" },
+              ...PORTFOLIO.credentials.map(cred =>
+                h("a", {
+                  key: cred.title,
+                  href: cred.url,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  className: `cred-row ${cred.verified ? "verified" : ""}`
+                },
+                  h("div", { className: "cred-main" },
+                    h("div", { className: "cred-code" }, cred.code),
+                    h("div", { style: { minWidth: "0" } },
+                      h("div", { className: "cred-name" }, cred.title),
+                      h("div", { className: "cred-issuer" }, cred.issuer)
+                    )
+                  ),
+                  h("div", { className: "cred-right" },
+                    h("span", { className: `status-chip ${cred.verified ? "verified" : ""}` },
+                      cred.verified ? h("span", { className: "jade-dot" }) : null,
+                      cred.status
+                    ),
+                    h("span", { className: "cred-verify" }, "Verify ↗")
+                  )
+                )
+              )
+            )
+          ),
+
+          // FOOTER CONTACT BAND
+          h("footer", { className: "reveal d4" },
+            h("div", { className: "footer-card" },
+              h("div", null,
+                h("h2", { className: "footer-heading" }, "Let's connect"),
+                h("p", { className: "footer-copy" },
+                  "Available for Cloud Security Engineer interviews, IaC security reviews, and open-source GCP lab collaborations."
+                )
+              ),
+              h("div", { className: "footer-actions" },
+                h("button", { className: "btn btn-primary", onClick: copyEmail },
+                  h(Icon, { name: "copy", size: 14 }),
+                  copiedEmail ? "Copied!" : PORTFOLIO.email
+                ),
+                h("a", { href: `mailto:${PORTFOLIO.email}`, className: "btn btn-secondary" }, "Email ↗"),
+                h("a", { href: PORTFOLIO.githubUrl, target: "_blank", rel: "noopener noreferrer", className: "btn btn-secondary" }, `@${PORTFOLIO.githubHandle} ↗`)
+              )
+            ),
+
+            h("div", { className: "colophon" },
+              h("span", null, `${PORTFOLIO.name} · ${PORTFOLIO.role}`),
+              h("span", null, `© ${new Date().getFullYear()} · Hosted on GitHub Pages`)
+            )
+          )
+        ),
+
+        // Slide-over Drawers & Quick Jump Palette
+        h(CaseStudyDrawer, { project: selectedProject, onClose: () => setSelectedProject(null), onCopy: copyText }),
+        h(NoteReaderDrawer, { note: selectedNote, onClose: () => setSelectedNote(null) }),
+        h(QuickJump, {
+          open: paletteOpen,
+          onClose: () => setPaletteOpen(false),
+          repos: gh.repos,
+          onSelectProject: setSelectedProject,
+          onSelectNote: setSelectedNote,
+          onToggleTheme: toggleTheme,
+          onCopyEmail: copyEmail
+        }),
+
+        toastMsg ? h("div", { className: "toast", role: "status" }, toastMsg) : null
+      );
+    }
+
+    React.ReactDOM.createRoot(document.getElementById("root")).render(h(App));
+  </script>
+</body>
+</html>
