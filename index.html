@@ -2218,7 +2218,7 @@
 
       githubSync: {
         enabled: true, // Automatically fetches live public repos from github.com/adrianjadev when hosted on GitHub Pages
-        maxRepos: 8
+        maxRepos: 8 // How many of the most recently pushed repos to show
       },
 
       /* Curated fallback repository index (shown in offline preview or before public repos are pushed) */
@@ -2723,7 +2723,7 @@ resource "google_storage_bucket" "restricted_vault" {
           return;
         }
 
-        const cacheKey = `aj-gh-repos:${username}`;
+        const cacheKey = `aj-gh-repos:pushed:${username}`;
         if (nonce === 0) {
           try {
             const cached = JSON.parse(sessionStorage.getItem(cacheKey) || "null");
@@ -2738,7 +2738,7 @@ resource "google_storage_bucket" "restricted_vault" {
         const timer = setTimeout(() => controller.abort(), 4500);
         setState(prev => ({ ...prev, status: "loading" }));
 
-        fetch(`https://api.github.com/users/${encodeURIComponent(username)}/repos?sort=updated&per_page=20&type=owner`, {
+        fetch(`https://api.github.com/users/${encodeURIComponent(username)}/repos?sort=pushed&direction=desc&per_page=100&type=owner`, {
           headers: { Accept: "application/vnd.github+json" },
           signal: controller.signal
         })
@@ -2752,7 +2752,8 @@ resource "google_storage_bucket" "restricted_vault" {
             const rawAvatar = raw[0] && raw[0].owner && raw[0].owner.avatar_url ? raw[0].owner.avatar_url : "";
             const apiAvatar = rawAvatar ? `${rawAvatar}${rawAvatar.includes("?") ? "&" : "?"}s=400` : "";
             const mapped = raw
-              .filter(r => !r.archived && r.name.toLowerCase() !== `${username.toLowerCase()}.github.io`)
+              .filter(r => !r.fork && !r.archived && r.name.toLowerCase() !== `${username.toLowerCase()}.github.io`)
+              .sort((a, b) => new Date(b.pushed_at || b.updated_at || 0) - new Date(a.pushed_at || a.updated_at || 0))
               .slice(0, maxRepos)
               .map(r => ({
                 name: r.name,
