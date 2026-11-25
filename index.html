@@ -3280,7 +3280,8 @@ resource "google_storage_bucket" "restricted_vault" {
                   , "helping protect millions of users by investigating sophisticated attack vectors related to Phishing, Social Engineering, Malware attacks; and building automation to scale detection and response."
                 ),
 
-                  h("a", { href: PORTFOLIO.resumeUrl, target: "_blank", rel: "noopener noreferrer", className: "btn btn-ghost" }, "CV/Resume ↗"),
+                h("div", { className: "hero-actions" },
+                h("a", { href: PORTFOLIO.resumeUrl, target: "_blank", rel: "noopener noreferrer", className: "btn btn-ghost" }, "CV/Resume (ATS) ↗"),
                   h("a", { href: PORTFOLIO.githubUrl, target: "_blank", rel: "noopener noreferrer", className: "btn btn-ghost" }, "GitHub ↗"),
                   h("a", { href: PORTFOLIO.skillsProfileUrl, target: "_blank", rel: "noopener noreferrer", className: "btn btn-ghost" }, "Google Skills ↗"),
                   h("a", { href: PORTFOLIO.linkedinUrl, target: "_blank", rel: "noopener noreferrer", className: "btn btn-ghost" }, "LinkedIn ↗")
