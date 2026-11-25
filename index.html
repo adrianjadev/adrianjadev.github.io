@@ -2218,7 +2218,7 @@
 
       githubSync: {
         enabled: true, // Automatically fetches live public repos from github.com/adrianjadev when hosted on GitHub Pages
-        maxRepos: 8 // How many of the most recently pushed repos to show
+        maxRepos: 5 // How many of the most recently pushed repos to show
       },
 
       /* Curated fallback repository index (shown in offline preview or before public repos are pushed) */
@@ -3274,7 +3274,9 @@ resource "google_storage_bucket" "restricted_vault" {
                   "I'm ", h("strong", null, PORTFOLIO.name), ", aspiring Cloud Security Engineer focused on ",
                   h("strong", null, "Google Cloud IAM, Zero-Trust VPC segmentation, Terraform IaC, and Kubernetes hardening"),
                   ". Every completed lab is rebuilt into a clean, auditable GitHub blueprint with automated security checks.",
-                  ". Currently, I work as a Security Engineer at the Google Operations Center, helping protect millions of users by investigating sophisticated attack vectors related to Phishing, Social Engineering, Malware attacks; and building automation to scale detection and response."
+                  "Currently, I work as a ",
+                  h("strong", null, "Security Engineer at the Google Operations Center")
+                  , "helping protect millions of users by investigating sophisticated attack vectors related to Phishing, Social Engineering, Malware attacks; and building automation to scale detection and response."
                 ),
 
                 h("div", { className: "hero-actions" },
