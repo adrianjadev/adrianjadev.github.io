@@ -2185,22 +2185,19 @@
        PORTFOLIO DATA — SINGLE SOURCE OF TRUTH FOR YOUR GITHUB PAGES SITE
        Edit only this object to update your name, links, projects, and history.
        ========================================================================= */
-    const PORTFOLIO = {
-      name: "Adrian Jade",
+       const PORTFOLIO = {
+      name: "adrianjade/v",
       monogram: "AJ",
-      role: "Cloud Security Engineer",
-      availability: "Open to Cloud Security Engineer Roles",
-      email: "your.email@example.com", // Replace with your personal public contact email
+      role: "Security Engineer",
+      availability: "Open to Cloud Security Engineer, DevOps/DevSecOps Roles",
+      email: "adrianjademanaday@gmail.com", // Replace with your personal public contact email
       githubHandle: "adrianjadev",
-      /* Direct GitHub profile avatar URL (falls back cleanly to the AJ Mineral Jade emblem offline). */
-      avatarUrl: "https://avatars.githubusercontent.com/u/38102918?v=4",
       githubUrl: "https://github.com/adrianjadev",
-      linkedinUrl: "https://www.linkedin.com/in/adrianjadev/",
+      linkedinUrl: "https://linkedin.com/in/adrianjadev",
       skillsProfileUrl: "https://www.skills.google/public_profiles/a9518546-af4d-48b3-900f-64afda9d132c",
 
       posture: [
         { label: "Primary Domain", value: "GCP IAM · Zero-Trust VPC" },
-        { label: "Verified Labs", value: "GSP345 (100/100) · GSP321" },
         { label: "Active Track", value: "GCP Cybersecurity · ACE" },
         { label: "Projects Repo", value: "gcp-security-blueprints", href: "https://github.com/adrianjadev/gcp-security-blueprints" }
       ],
@@ -2533,31 +2530,48 @@ resource "google_storage_bucket" "restricted_vault" {
 
       experience: [
         {
-          period: "2026 — Present",
-          role: "Cloud Security Engineer (In Training)",
-          org: "Independent GCP Security Labs · @adrianjadev",
+          period: "Nov 2022 — Present",
+          role: "Security Engineer - Threat Detection",
+          org: "Google Operations Center",
           bullets: [
-            "Rebuilt verified Google Cloud Challenge Labs (GSP345 Terraform 100/100, GSP321 Networking) into sanitized, reproducible GitHub IaC repositories.",
-            "Integrated automated DevSecOps policy checks (Checkov, Trivy, Gitleaks) via GitHub Actions across Terraform and container templates.",
-            "Authored concise architecture notes covering least-privilege IAM, SSO trust boundaries, and custom-mode multi-VPC isolation."
+            "Threat Detection & Mitigation – Safeguarded billions of users across Gmail, Chrome, Search, and Ads against sophisticated phishing, malware, and social engineering threats.",
+            "Vulnerability Management & Analysis – Executed large-scale data analysis across massive datasets using SQL, MapReduce, Python, and C/C++ to uncover emerging threat trends and system vulnerabilities.",
+            "Malware & Payload Analysis – Performed static code and dynamic behavioral analysis on suspicious executables, browser extensions, and complex payloads inside interactive virtual-machine (VM) detonation sandboxes to trigger evasive behaviors and validate threat verdicts.",
+            "Threat Intelligence & Campaign Tracking – Operated configurable headless web crawlers—simulating multi-platform devices, geo-targeted anti-cloaking proxies, and user interactions—to inspect HTTP request chains, JavaScript execution, and classify evasive web attack campaigns.",
+            "Infrastructure & DNS Investigation – Correlated suspicious domains, URLs, IPs, file hashes, certificates, and DNS patterns via unified threat-scoring and entity-relationship platforms to map and disrupt active malicious distribution networks.",
+            "Incident Triage & Root Cause Analysis (RCA) – Led data-driven investigations for high-priority abuse incidents and enterprise escalations, isolating root causes and attack vectors to drive systemic remediation.",
+            "Detection Tuning & False-Positive Reduction – Audited automated threat-scoring signals, headless crawler telemetry, and blocklist enforcement outputs to resolve false positives, sharpen classification accuracy, and sustain reliable protection at scale."
           ]
         },
         {
-          period: "20XX — Present",
-          role: "Current Role Title (Update in PORTFOLIO)",
-          org: "Company / Organization",
+          period: "June 2021 — Nov Present",
+          role: "Technical Support Engineer | E-Commerce",
+          org: "Oracle NetSuite",
           bullets: [
-            "Replace with 2–3 high-signal bullets emphasizing operational rigor, access governance, troubleshooting, or automation.",
-            "Highlight security-relevant habits: change control discipline, root-cause documentation, and production reliability."
+            "Platform Administration & Optimization – Administered critical web stores and mobile apps using NetSuite's SuiteCommerce Advanced (SCA), SuiteCommerce Standard, and SuiteScript APIs.",
+            "Advanced Troubleshooting – Diagnosed and resolved complex website functionality issues, accurately isolating root causes between core functions and client-side customizations.",
+            "Systems Integration – Configured and supported critical payment processing integrations, including CyberSource, SAML, PayPal Express, and Merchant e-Solutions.",
+            "Knowledge Management – Coordinated weekly Knowledge Base Maintenance Reviews to keep team technical documentation current and accessible.",
+            "Key Recognition – Accelerated promotion from Associate to Engineer within 16 months based on technical excellence"
           ]
         },
         {
-          period: "20XX — 20XX",
-          role: "Previous Technical / Operations Role (Update)",
-          org: "Previous Organization",
+          period: "Jan 2020 — June 2021",
+          role: "Data Analyst",
+          org: "Accenture",
           bullets: [
-            "Standardized operational runbooks and user access provisioning aligned with least-privilege controls.",
-            "Partnered across engineering teams to triage incidents and improve system resilience."
+            "Root Cause & Trend Analysis – Conducted root cause identification and trending analysis to optimize quality assurance processes.",
+            "Performance Tracking – Engineered an internal dashboard to track and display key performance metrics for project team members.",
+            "Key Recognition – Named top performer for three consecutive months by maintaining strict SLO adherence."
+          ]
+        },
+        {
+          period: "Sept 2018 — June 2021",
+          role: "Junior Full Stack Engineer",
+          org: "STRIDE Consulting Inc. | Internship",
+          bullets: [
+          "Application Development & Testing – Programmed, debugged, and tested code for new software applications and maintained legacy systems.",
+          "Full-Stack Exploration – Expanded technical stack capabilities by supporting legacy applications, building and testing integrations with Python/Django, Node.js, React.js, SQL, MongoDB, and C++ (Qt Framework)."
           ]
         }
       ],
@@ -2582,22 +2596,6 @@ resource "google_storage_bucket" "restricted_vault" {
       ],
 
       credentials: [
-        {
-          code: "TF",
-          title: "Build Infrastructure with Terraform on Google Cloud",
-          issuer: "Google Cloud Skills · Skill Badge (GSP345 · 100/100)",
-          status: "Verified",
-          verified: true,
-          url: "https://www.skills.google/public_profiles/a9518546-af4d-48b3-900f-64afda9d132c"
-        },
-        {
-          code: "NET",
-          title: "Develop Your Google Cloud Network",
-          issuer: "Google Cloud Skills · Skill Badge (GSP321)",
-          status: "Verified",
-          verified: true,
-          url: "https://www.skills.google/public_profiles/a9518546-af4d-48b3-900f-64afda9d132c"
-        },
         {
           code: "SEC",
           title: "Google Cloud Cybersecurity Certificate",
